@@ -20,6 +20,7 @@ def collection_testing():
     # print(a_dictionary[:int(len(a_dictionary)/2)]) # call first half
 
 
+
 if __name__ == '__main__':
     collection_testing()
 

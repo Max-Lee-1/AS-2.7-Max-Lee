@@ -49,38 +49,74 @@ a_dictionary = {'One': 1, 'Two': 2, 'Three': 3, 'Four': 4}
 
 
 def collection_testing(a):
-    if type(a) == list or tuple:
-        # list
-        print('List: ', a, '\n',  # printing collection
-              type(a), '\n',  # collection type
-              'First:', a[0], '; Last:', a[-1], '\n',  # First & last of collection
-              a_list[:int(len(a)/2)])  # First half of collection
-        for i in a:  # getting specific item
-            print(i.__index__(), ')', i)
-        for i in a:
-            i = int(input('Type: '))
-            if 1 <= i <= 4:
-                print(a_list[i-1])
-                break
-            else:
-                print('Invalid.')
+    print(a, '\n',
+          type(a), '\n',
+          'First:', next(iter(a)), '; Last:', list(a)[-1], '\n',  # First & last of collection
+          list(a)[:len(a)//2])  # First half of collection
+    i = 0
+    while i < 5:
+        for i, item in enumerate(a):  # getting specific item and its index
+            i += 1
+            print(i, ')', item)
+        while True:  # Loop until a valid input is received
+            try:
+                i = int(input('Type: '))
+                if 1 <= i <= len(a):
+                    print('Result:', list(a)[i-1])
+                    i = 5
+                    print('\n')
+                    break
+                else:
+                    print('Invalid.')
+            except ValueError:
+                print('Invalid input.')
+
+
+
+    '''if type(a) == list or type(a) == tuple: 
+        
         print('\n')
     elif type(a) == set:
-        print('Set: ', a_set, '\n',
-              type(a_set), '\n',
-              'First:', list(a_set)[0], '; Last:', list(a_set)[-1], '\n',
-              list(a_set)[:len(a_set)//2])
-        for i in a_set:
-            print(i.__index__(), ')', i)
-        for i in a_set:
-            i = int(input('Type: '))
-            if 1 <= i <= 4:
-                print(a_set[i-1])
-                break
-            else:
-                print('Invalid.')
+        print('Set: ', a, '\n',
+              type(a), '\n',
+              'First:', next(iter(a)), '; Last:', list(a)[-1], '\n',  # First & last of collection
+              list(a)[:len(a)//2])  # First half of collection
+        for i, item in enumerate(a):  # getting specific item and its index
+            print(i + 1, ')', item)
+        while True:  # Loop until a valid input is received
+            try:
+                i = int(input('Type: '))
+                if 1 <= i <= len(a):
+                    print(list(a)[i-1])
+                    break
+                else:
+                    print('Invalid.')
+            except ValueError:
+                print('Invalid input.')
         print('\n')
-        '''# tuple
+    elif type(a) == dict:
+        print('Dictionary: ', a, '\n',
+              type(a), '\n',
+              'First:', next(iter(a)), '; Last:', list(a)[-1], '\n',  # First & last of collection
+              list(a)[:len(a)//2])  # First half of collection
+        for i, item in enumerate(a):  # getting specific item and its index
+            print(i + 1, ')', item)
+        while True:  # Loop until a valid input is received
+            try:
+                i = int(input('Type: '))
+                if 1 <= i <= len(a):
+                    print(list(a)[i-1])
+                    break
+                else:
+                    print('Invalid.')
+            except ValueError:
+                print('Invalid input.')
+        print('\n')
+    else:
+        print('Unsupported collection type.')  # Inform the user that the collection type is not supported
+        
+        
+        # tuple
         print('Tuple: ', a_tuple, '\n',
               type(a_tuple), '\n',
               'First:', a_tuple[0], '; Last: ', a_tuple[-1], '\n',
@@ -91,9 +127,12 @@ def collection_testing(a):
               type(a_dictionary), '\n',
               "First: ", list(a_dictionary.keys())[0], ',', list(a_dictionary.values())[0], '\n',
               "Last: ", list(a_dictionary.keys())[-1], ',', list(a_dictionary.values())[-1], '\n',
-              list(a_dictionary.items())[:len(a_dictionary)//2])'''
+              list(a_dictionary.items())[:len(a_dictionary)//2])
+        '''
 
 
 if __name__ == '__main__':
     collection_testing(a_list)
     collection_testing(a_tuple)
+    collection_testing(a_set)
+    collection_testing(a_dictionary)

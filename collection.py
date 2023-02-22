@@ -1,3 +1,4 @@
+
 '''def collection_testing(a):
     a_list = [1, 2, 3, 4]
     a_tuple = (1, [2.0, 2.1, 2.2], 3, 4.0)

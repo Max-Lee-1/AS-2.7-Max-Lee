@@ -1,5 +1,4 @@
 import array as arr
-
 a_list = [1, 2, 3, "4"]
 a_array = arr.array("b", [1, 2, 3, 4])
 a_tuple = (1, [2.0, 2.1, 2.2], 3, 4.0)

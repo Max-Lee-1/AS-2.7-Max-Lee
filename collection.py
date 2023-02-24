@@ -1,4 +1,5 @@
 import array as arr
+
 a_list = [1, 2, 3, "4"]
 a_array = arr.array("b", [1, 2, 3, 4])
 a_tuple = (1, [2.0, 2.1, 2.2], 3, 4.0)
@@ -9,25 +10,25 @@ a_dictionary = {'One': 1, 'Two': 2, 'Three': 3, 'Four': 4}
 def collection_testing(a):
     print(a, '\n',
           type(a), '\n',
-          'First:', next(iter(a)), '; Last:', list(a)[-1], '\n',  # First & last of collection
-          list(a)[:len(a)//2])  # First half of collection
+          'First item:', next(iter(a)), '; Last item:', list(a)[-1], '\n',  # First & last of collection
+          'First half of list:', list(a)[:len(a)//2])  # First half of collection
     i = 0
     while i < 5:
         for i, item in enumerate(a):  # getting specific item and its index
             i += 1
-            print(i, ')', item)
+            print(i, ') ', item)
         while True:  # Loop until a valid input is received
             try:
-                i = int(input('Type: '))
+                i = int(input('Please select item you want: '))
                 if 1 <= i <= len(a):
                     print('Result:', list(a)[i-1])
                     i = 5
                     print('\n')
                     break
                 else:
-                    print('Invalid.')
+                    print('Invalid, please type the according no. given.')
             except ValueError:
-                print('Invalid input.')
+                print('Invalid input. Please type an integer')
 
 
 if __name__ == '__main__':

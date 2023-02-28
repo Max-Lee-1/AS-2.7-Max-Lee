@@ -11,5 +11,20 @@
                               Bluetooth Ver. (added from reference): 5.0 or above, 5.2 or above...
                               Rating (added form reference): the best overall, Best in audio, best in user-friendly...
 '''
-
+headphone_dict = {}
+earbud_dict = {'Samsung Galaxy Buds 2': 1,  # best all rounded
+               'Apple Airpods Pro (Gen 2)': 2,  # best iphone, best sounding upper-mid range, most expensive
+               'Beats Fit Pro': 3,  # best workout
+               'Sony WF-1000XM4': 4,  # best ANC (Active Noise Cancelling), 2nd best Bluetooth codec support
+               'Jabra Elite 7 Active': 5,  # best versatility
+               'Jabra Elite 7 Pro': 6,  # best sounding in lower-mid range
+               'EPOS GTW 270 Hybrid': 7,  # best gaming
+               'Nothing Ear 1': 8,  # best look
+               'Sennheiser Momentum TW 3': 9,  # best sounding bass
+               'Earfun Air Pro': 10,  # good-looking, all rounded in cheap price range
+               '1MORE PistonbBuds Pro': 11,  # best cheapest with all rounded feature
+               'Bang & Olufsen Beoplay EX': 12,  # Expensive, great-looking, nice sound
+               'Jabra Elite 85t': 13,  # best Bluetooth codec support
+               'OnePlus Nord Buds': 14,  # best value
+               'Sony WF-C500': 15,  # best cheapest with good sound quality}
 

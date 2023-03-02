@@ -33,11 +33,10 @@ earbud_dict = {'Samsung Galaxy Buds 2': 279.00,  # best all rounded
                'EPOS GTW 270 Hybrid': 239.00,  # best gaming
                'Nothing Ear 1': 189.00,  # best looking
                'Sennheiser Momentum TW 3': 378.00,  # best sounding bass
-               'Earfun Air Pro 3': 139.00,  # good-looking, all rounded in cheap price range
+               'Earfun Air Pro 3': 139.00,  # best value, good-looking, all rounded
                '1MORE PistonbBuds Pro': 11,  # best cheapest with all rounded feature
                'Bang & Olufsen Beoplay EX': 12,  # Expensive, great-looking, nice sound
                'Jabra Elite 85t': 13,  # best Bluetooth codec support
-               'OnePlus Nord Buds': 14,  # best value
                'Sony WF-C500': 15,  # best sounding cheapest
                 }
 

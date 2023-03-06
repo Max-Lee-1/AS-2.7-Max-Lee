@@ -25,7 +25,7 @@ headphone_dict = {'Sony WH-1000XM5': 595.00,  # best all rounded, best ANC, comf
                   }
 
 earbud_dict = {'Samsung Galaxy Buds 2': 279.00,  # best all rounded
-               'Apple Airpods Pro (Gen 2)': 479.00,  # best iphone, best sounding upper-mid range price, most expensive
+               'Apple Airpods Pro (Gen 2)': 479.00,  # best iphone, best sounding upper-mid range price, expensive
                'Beats Fit Pro': 349.95,  # best workout
                'Sony WF-1000XM4': 369.00,  # best ANC (Active Noise Cancelling), 2nd best Bluetooth codec support
                'Jabra Elite 7 Active': 284.00,  # best versatility
@@ -34,10 +34,9 @@ earbud_dict = {'Samsung Galaxy Buds 2': 279.00,  # best all rounded
                'Nothing Ear 1': 189.00,  # best looking
                'Sennheiser Momentum TW 3': 378.00,  # best sounding bass
                'Earfun Air Pro 3': 139.00,  # best value, good-looking, all rounded
-               '1MORE PistonbBuds Pro': 11,  # best cheapest with all rounded feature
-               'Bang & Olufsen Beoplay EX': 12,  # Expensive, great-looking, nice sound
-               'Jabra Elite 85t': 13,  # best Bluetooth codec support
-               'Sony WF-C500': 15,  # best sounding cheapest
+               'Bang & Olufsen Beoplay EX': 775.00,  # Most expensive, great-looking, nice sound
+               'Jabra Elite 85t': 199.95,  # best Bluetooth codec support
+               'Sony WF-C500': 115.00,  # best sounding cheapest
                 }
 
 # headphone_dict[1] =

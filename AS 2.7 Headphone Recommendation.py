@@ -39,6 +39,67 @@ earbud_dict = {'Samsung Galaxy Buds 2': 279.00,  # best all rounded
                'Sony WF-C500': 115.00,  # best sounding cheapest
                 }
 
+'''# Headphone/Earbuds Recommendation Program
+
+headphone_dict = {'Sony WH-1000XM5': 595.00,  
+                  'Apple Airpods Max': 999.00,  
+                  'Sony WH-1000XM4': 414.00,  
+                  'Bose Noise Cancelling Headphones 700': 699.95,  
+                  'Logitech G435 LIGHTSPEED Wireless': 249.90,  
+                  'Bowers & Wilkins Px7 S2 Headphones': 649.00,  
+                  'Sennheiser Momentum 4 Wireless': 599.95,  
+                  'Belkin Soundform Mini': 59.99,  
+                  'Anker SoundCore Life Q30': 241.95,  
+                  'Edifier W820NB': 168.00,  
+                  }
+
+earbud_dict = {'Samsung Galaxy Buds 2': 279.00,  
+               'Apple Airpods Pro (Gen 2)': 479.00,  
+               'Beats Fit Pro': 349.95,  
+               'Sony WF-1000XM4': 369.00,  
+               'Jabra Elite 7 Active': 284.00,  
+               'Jabra Elite 7 Pro': 296.00,  
+               'EPOS GTW 270 Hybrid': 239.00,  
+               'Nothing Ear 1': 189.00,  
+               'Sennheiser Momentum TW 3': 378.00,  
+               'Earfun Air Pro 3': 139.00,  
+               'Bang & Olufsen Beoplay EX': 775.00,  
+               'Jabra Elite 85t': 199.95,  
+               'Sony WF-C500': 115.00,  
+                }
+
+# Price range
+price_range = input("Enter price range (e.g. 100-500): ").split("-")
+price_min = float(price_range[0])
+price_max = float(price_range[1])
+
+# Brand
+brand_choices = ["Sony", "Apple", "Bose", "Logitech", "Bowers & Wilkins", "Sennheiser", "Belkin", "Anker", "Edifier",
+                  "Samsung", "Beats", "Jabra", "EPOS", "Nothing", "Bang & Olufsen"]
+brand = input("Enter brand (" + ", ".join(brand_choices) + "): ")
+
+# Functions
+functions_choices = ["Noise Cancelling", "Ambient Sound", "Low Latency"]
+functions = input("Enter functions (" + ", ".join(functions_choices) + "): ").split(",")
+functions = [f.strip() for f in functions]
+
+# Support Codec
+codec_choices = ["AAC", "SBC", "LDAC"]
+codec = input("Enter support codec (" + ", ".join(codec_choices) + "): ")
+
+# App support
+app_support_choices = ["Yes", "No", "Both"]
+app_support = input("Enter app support (" + ", ".join(app_support_choices) + "): ")
+
+# Battery Life
+battery_choices = ["Less than 5 hours", "5-10 hours", "10-20 hours", "More than 20 hours"]
+battery = input("Enter battery life (" + ", ".join(battery_choices) + "): ")
+
+# Bluetooth Ver.
+bluetooth_choices = ["5.0 or above", "5.2 or above", "6.0 or above"]
+bluetooth = input("Enter Bluetooth version (" + ", ".join(bluetooth
+'''
+
 
 # Price range
 price_range = input("Enter price range (e.g. 100-500): ").split("-")

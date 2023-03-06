@@ -39,9 +39,41 @@ earbud_dict = {'Samsung Galaxy Buds 2': 279.00,  # best all rounded
                'Sony WF-C500': 115.00,  # best sounding cheapest
                 }
 
-# headphone_dict[1] =
+
+# Price range
+price_range = input("Enter price range (e.g. 100-500): ").split("-")
+price_min = float(price_range[0])
+price_max = float(price_range[1])
+
+# Brand
+brand_choices = ["Anker", "Apple", "Bang & Olufsen", "Beats", "Belkin", "Bose", "Bowers & Wilkins", "Edifier", "EPOS",
+                 "Jabra", "Logitech", "Nothing", "Samsung", "Sennheiser", "Sony"]
+brand = input("Enter brand (" + ", ".join(brand_choices) + "): ")
+
+# Functions
+functions_choices = ["Noise Cancelling", "Ambient Sound", "Low Latency"]
+functions = input("Enter functions (" + ", ".join(functions_choices) + "): ").split(",")
+functions = [f.strip() for f in functions]
+
+# Support Codec
+codec_choices = ["AAC", "SBC", "LDAC"]
+codec = input("Enter support codec (" + ", ".join(codec_choices) + "): ")
+
+# App support
+app_support_choices = ["Yes", "No", "Both"]
+app_support = input("Enter app support (" + ", ".join(app_support_choices) + "): ")
+
+# Battery Life
+battery_choices = ["Less than 5 hours", "5-10 hours", "10-20 hours", "More than 20 hours"]
+battery = input("Enter battery life (" + ", ".join(battery_choices) + "): ")
+
+# Bluetooth Ver.
+bluetooth_choices = ["5.0 or above", "5.2 or above", "6.0 or above"]
+bluetooth = input("Enter Bluetooth version (" + ", ".join(bluetooth_choices) + "): ")
+
 
 print(headphone_dict)
 print('\n')
 print(earbud_dict)
+print(brand_choices)
 

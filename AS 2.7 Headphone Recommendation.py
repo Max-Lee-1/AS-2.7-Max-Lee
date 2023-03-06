@@ -8,7 +8,6 @@
                               Support Codec: E.g. AAC, SBC, LDAC...
                               App support: Y/N / Both
                               Battery Life: [Selection time range]
-                              Bluetooth Ver. (added from reference): 5.0 or above, 5.2 or above...
                               Speciality (added form reference): the best overall, Best in audio, best in user-friendly...
                               Info: Ship Y/N; Retail Y/N; Overall rating (May add other ratings);
 '''
@@ -112,29 +111,30 @@ brand_choices = ["Anker", "Apple", "Bang & Olufsen", "Beats", "Belkin", "Bose", 
 brand = input("Enter brand (" + ", ".join(brand_choices) + "): ")
 
 # Functions
-functions_choices = ["Noise Cancelling", "Ambient Sound", "Low Latency"]
+functions_choices = ["Active Noise Cancelling", "Ambient Sound", "Auto Pause/Play", "Low Latency",
+                     "Passive Noise Cancelling", "Quick Charge", "Voice Call", "Water Resistence", "Wireless Charging"]
 functions = input("Enter functions (" + ", ".join(functions_choices) + "): ").split(",")
 functions = [f.strip() for f in functions]
 
 # Support Codec
-codec_choices = ["AAC", "SBC", "LDAC"]
+codec_choices = ["AAC", "aptX", "aptX Low Latency", "aptX Adaptive", "aptX HD", "LC3", "LDAC", "LHDC", "SBC"]
 codec = input("Enter support codec (" + ", ".join(codec_choices) + "): ")
 
 # App support
-app_support_choices = ["Yes", "No", "Both"]
+app_support_choices = ["Yes", "No"]
 app_support = input("Enter app support (" + ", ".join(app_support_choices) + "): ")
 
 # Battery Life
 battery_choices = ["Less than 5 hours", "5-10 hours", "10-20 hours", "More than 20 hours"]
 battery = input("Enter battery life (" + ", ".join(battery_choices) + "): ")
 
-# Bluetooth Ver.
-bluetooth_choices = ["5.0 or above", "5.2 or above", "6.0 or above"]
-bluetooth = input("Enter Bluetooth version (" + ", ".join(bluetooth_choices) + "): ")
+# Speciality
+speciality_choices = ["Best Value", "Cheapest", "Pricey", "Long Usage Hours", "Best Sounding (in price range)",
+                      "Best ANC", "Best Ambient", "Best Overall"]
+speciality = input("Enter speciality (" + ", ".join(speciality_choices) + "): ")
 
 
 print(headphone_dict)
 print('\n')
 print(earbud_dict)
-print(brand_choices)
 

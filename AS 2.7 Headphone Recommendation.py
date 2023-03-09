@@ -36,7 +36,7 @@ earbud_dict = {'Samsung Galaxy Buds 2': 279.00,  # best all rounded
                'Bang & Olufsen Beoplay EX': 775.00,  # Most expensive, great-looking, nice sound
                'Jabra Elite 85t': 199.95,  # best Bluetooth codec support
                'Sony WF-C500': 115.00,  # best sounding cheapest
-                }
+               }
 
 '''# Headphone/Earbuds Recommendation Program
 
@@ -97,41 +97,105 @@ battery = input("Enter battery life (" + ", ".join(battery_choices) + "): ")
 # Bluetooth Ver.
 bluetooth_choices = ["5.0 or above", "5.2 or above", "6.0 or above"]
 bluetooth = input("Enter Bluetooth version (" + ", ".join(bluetooth
+
+# Initialize list of recommendations
+    recommendations = []
+
+    # Loop through headphones and earbuds dictionaries to find matches
+    for product_dict in [headphone_dict, earbud_dict]:
+        for product, price in product_dict.items():
+            # Filter by price range
+            if price >= price_min and price <= price_max:
+                # Filter by brand
+                if brand.lower() in product.lower():
+                    # Filter by functions
+                    if all(f.lower() in product.lower() for f in functions):
+                        # Filter by codec support
+                        if ('AAC' in codec and 'AAC' in product_dict[product].get('codec', '')) or \
+                                ('SBC' in codec and 'SBC' in product_dict[product].get('codec', '')) or \
+                                ('LDAC' in codec and 'LDAC' in product_dict[product].get('codec', '')):
+                            recommendations.append(product)
+
+    return recommendations
 '''
 
+price_min = 0
+price_max = 0
+brand = "N/A"
+codec = "N/A"
+app_support = "N/A"
+battery = "N/A"
+speciality = "N/A"
 
 # Price range
-price_range = input("Enter price range (e.g. 100-500): ").split("-")
-price_min = float(price_range[0])
-price_max = float(price_range[1])
+def price_range_fc():
+    global price_min, price_max
+    price_range = input("Enter price range (e.g. 100-500): ").split("-")
+    price_min = int(price_range[0])
+    price_max = int(price_range[1])
+    return
+
 
 # Brand
-brand_choices = ["Anker", "Apple", "Bang & Olufsen", "Beats", "Belkin", "Bose", "Bowers & Wilkins", "Edifier", "EPOS",
-                 "Jabra", "Logitech", "Nothing", "Samsung", "Sennheiser", "Sony"]
-brand = input("Enter brand (" + ", ".join(brand_choices) + "): ")
+def brand_fc():
+    brand_choices = ["Anker", "Apple", "Bang & Olufsen", "Beats", "Belkin", "Bose", "Bowers & Wilkins", "Edifier", "EPOS",
+                     "Jabra", "Logitech", "Nothing", "Samsung", "Sennheiser", "Sony", "N/A"]
+    return brand == input("Enter brand (" + ", ".join(brand_choices) + "): ")
+
 
 # Functions
-functions_choices = ["Active Noise Cancelling", "Ambient Sound", "Auto Pause/Play", "Low Latency",
-                     "Passive Noise Cancelling", "Quick Charge", "Voice Call", "Water Resistence", "Wireless Charging"]
-functions = input("Enter functions (" + ", ".join(functions_choices) + "): ").split(",")
-functions = [f.strip() for f in functions]
+def functions_fc():
+    functions_choices = ["Active Noise Cancelling", "Ambient Sound", "Auto Pause/Play", "Low Latency",
+                         "Passive Noise Cancelling", "Quick Charge", "Voice Call", "Water Resistence", "Wireless Charging"]
+    functions = input("Enter functions (" + ", ".join(functions_choices) + "): ").split(",")
+    return functions == [f.strip() for f in functions]
+
 
 # Support Codec
-codec_choices = ["AAC", "aptX", "aptX Low Latency", "aptX Adaptive", "aptX HD", "LC3", "LDAC", "LHDC", "SBC"]
-codec = input("Enter support codec (" + ", ".join(codec_choices) + "): ")
+def codec_fc():
+    codec_choices = ["AAC", "aptX", "aptX Low Latency", "aptX Adaptive", "aptX HD", "LC3", "LDAC", "LHDC", "SBC", "N/A"]
+    return codec == input("Enter support codec (" + ", ".join(codec_choices) + "): ")
+
 
 # App support
-app_support_choices = ["Yes", "No"]
-app_support = input("Enter app support (" + ", ".join(app_support_choices) + "): ")
+def app_support_fc():
+    app_support_choices = ["Yes", "No", "N/A"]
+    return app_support == input("Enter app support (" + ", ".join(app_support_choices) + "): ")
+
 
 # Battery Life
-battery_choices = ["Less than 5 hours", "5-10 hours", "10-20 hours", "More than 20 hours"]
-battery = input("Enter battery life (" + ", ".join(battery_choices) + "): ")
+def battery_life_fc():
+    battery_choices = ["Less than 5 hours", "5-10 hours", "10-20 hours", "More than 20 hours", "N/A"]
+    return battery == input("Enter battery life (" + ", ".join(battery_choices) + "): ")
+
 
 # Speciality
-speciality_choices = ["Best Value", "Cheapest", "Pricey", "Long Usage Hours", "Best Sounding (in price range)",
-                      "Best ANC", "Best Ambient", "Best Overall"]
-speciality = input("Enter speciality (" + ", ".join(speciality_choices) + "): ")
+def speciality_fc():
+    speciality_choices = ["Value", "Cheapest", "Pricey", "Long Usage Hours", "Good Sounding (in price range)",
+                          "Best ANC", "Best Ambient", "Best Overall"]
+    return speciality == input("Enter speciality (" + ", ".join(speciality_choices) + "): ")
+
+
+def recommendation():
+    # Initialize list of recommendations
+    recommendations = []
+
+    # Loop through headphones and earbuds dictionaries to find matches
+    for product_dict in [headphone_dict, earbud_dict]:
+        for product, price in product_dict.items():
+            # Filter by price range
+            if price >= price_min and price <= price_max:
+                # Filter by brand
+                if brand.lower() in product.lower():
+                    # Filter by functions
+                    if all(f.lower() in product.lower() for f in functions):
+                        # Filter by codec support
+                        if ('AAC' in codec and 'AAC' in product_dict[product].get('codec', '')) or \
+                                ('SBC' in codec and 'SBC' in product_dict[product].get('codec', '')) or \
+                                ('LDAC' in codec and 'LDAC' in product_dict[product].get('codec', '')):
+                            recommendations.append(product)
+
+    return recommendations
 
 
 print(headphone_dict)

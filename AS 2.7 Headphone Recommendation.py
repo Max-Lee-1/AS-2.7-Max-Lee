@@ -236,63 +236,6 @@ battery = "N/A"
 functions = "N/A"
 
 
-# Price range
-def price_range_fc():
-    global price_min, price_max
-    price_range = input("Enter price range (e.g. 100-500): ").split("-")
-    price_min = float(price_range[0])
-    price_max = float(price_range[1])
-    return
-
-
-# Brand
-def brand_fc():
-    brand_choices = ["Anker", "Apple", "Bang & Olufsen", "Beats", "Belkin", "Bose", "Bowers & Wilkins", "Edifier", "EPOS",
-                     "Jabra", "Logitech", "Nothing", "Samsung", "Sennheiser", "Sony", "N/A"]
-    print("Choose a brand from the following: ")
-    for i, brand in enumerate(brand_choices):
-        print(f"{i+1}. {brand}")
-    brand_choice = int(input("Enter your choice: "))
-    return brand == brand_choices[brand_choice-1]
-
-
-# Functions
-def functions_fc():
-    functions_choices = ["Active Noise Cancelling", "Ambient Sound", "Auto Pause/Play", "Low Latency",
-                         "Passive Noise Cancelling", "Quick Charge", "Voice Call", "Water Resistence", "Wireless Charging", "N/A"]
-    functions = input("Enter functions (" + ", ".join(functions_choices) + "): ").split(",")
-    return functions == [f.strip() for f in functions]
-
-
-# Support Codec
-def codec_fc():
-    global codec
-    codec_choices = ["AAC", "aptX", "aptX Low Latency", "aptX Adaptive", "aptX HD", "LC3", "LDAC", "LHDC", "SBC", "N/A"]
-    return codec == input("Enter support codec (" + ", ".join(codec_choices) + "): ")
-
-
-# App support
-def app_support_fc():
-    global app_support
-    app_support_choices = ["Yes", "No", "N/A"]
-    return app_support == input("Enter app support (" + ", ".join(app_support_choices) + "): ")
-
-
-# Battery Life
-def battery_life_fc():
-    global battery
-    battery_choices = ["Less than 5 hours", "5-10 hours", "10-20 hours", "More than 20 hours", "N/A"]
-    return battery == input("Enter battery life (" + ", ".join(battery_choices) + "): ")
-
-
-# Speciality
-'''def speciality_fc():
-    global speciality
-    speciality_choices = ["Value", "Cheapest", "Pricey", "Long Usage Hours", "Good Sounding (in price range)",
-                          "Best ANC", "Best Ambient", "Best Overall"]
-    return speciality == input("Enter speciality (" + ", ".join(speciality_choices) + "): ")'''
-
-
 def category_fc():
     global chosen_dict
     category_choice = input("Which category are you looking for? (Enter 'headphone' or 'earbud'): ")
@@ -305,6 +248,85 @@ def category_fc():
     else:
         print("Invalid choice!")
         category_fc()
+
+
+# Price range
+def price_range_fc():
+    global price_min, price_max
+    try:
+        price_range = input("Enter price range (e.g. 100-500): ").split("-")
+        price_min = float(price_range[0])
+        price_max = float(price_range[1])
+        return
+    except ValueError:
+        print("Invalid choice!")
+        price_range_fc()
+
+
+# Brand
+def brand_fc():
+    try:
+        brand_choices = ["Anker", "Apple", "Bang & Olufsen", "Beats", "Belkin", "Bose", "Bowers & Wilkins", "Edifier", "EPOS",
+                         "Jabra", "Logitech", "Nothing", "Samsung", "Sennheiser", "Sony", "N/A"]
+        print("Choose a brand from the following: ")
+        for i, brand in enumerate(brand_choices):
+            print(f"{i+1}. {brand}")
+        brand_choice = int(input("Enter your choice: "))
+        return brand == brand_choices[brand_choice-1]
+    except ValueError:
+        print("Invalid choice!")
+        brand_fc()
+
+
+# Functions
+def functions_fc():
+    try:
+        functions_choices = ["Active Noise Cancelling", "Ambient Sound", "Auto Pause/Play", "Low Latency",
+                             "Passive Noise Cancelling", "Quick Charge", "Voice Call", "Water Resistence", "Wireless Charging", "N/A"]
+        functions = input("Enter functions (" + ", ".join(functions_choices) + "): ").split(",")
+        return functions == [f.strip() for f in functions]
+    except ValueError:
+        print("Invalid choice!")
+        functions_fc()
+
+# Support Codec
+def codec_fc():
+    global codec
+    try:
+        codec_choices = ["AAC", "aptX", "aptX Low Latency", "aptX Adaptive", "aptX HD", "LC3", "LDAC", "LHDC", "SBC", "N/A"]
+        return codec == input("Enter support codec (" + ", ".join(codec_choices) + "): ")
+    except ValueError:
+        print("Invalid choice!")
+        codec_fc()
+
+
+# App support
+def app_support_fc():
+    global app_support
+    try:
+        app_support_choices = ["Yes", "No", "N/A"]
+        return app_support == input("Enter app support (" + ", ".join(app_support_choices) + "): ")
+    except ValueError:
+        print("Invalid choice!")
+        app_support_fc()
+
+
+# Battery Life
+def battery_life_fc():
+    global battery
+    try:
+        battery_choices = ["Less than 5 hours", "5-10 hours", "10-20 hours", "More than 20 hours", "N/A"]
+        return battery == input("Enter battery life (" + ", ".join(battery_choices) + "): ")
+    except ValueError:
+        print("Invalid choice!")
+        battery_life_fc()
+
+# Speciality
+'''def speciality_fc():
+    global speciality
+    speciality_choices = ["Value", "Cheapest", "Pricey", "Long Usage Hours", "Good Sounding (in price range)",
+                          "Best ANC", "Best Ambient", "Best Overall"]
+    return speciality == input("Enter speciality (" + ", ".join(speciality_choices) + "): ")'''
 
 
 # def recommendation(price_min, price_max, brand, functions, codec):  #

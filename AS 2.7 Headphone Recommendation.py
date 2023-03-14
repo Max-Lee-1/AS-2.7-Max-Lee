@@ -13,6 +13,7 @@
 '''
 
 # dictionary for options - includes price, brand, functions, Bluetooth Codec, App support, Battery Life and Speciality
+# need to add the options one by one
 headphone_dict = {'Sony WH-1000XM5': {'brand': 'Sony', 'price': 595.00, 'speciality': 'best all rounded, best ANC, comfortable'},
                   'Apple Airpods Max': {'brand': 'Apple', 'price': 999.00, 'speciality': 'best iphone, 2nd most expensive, 2nd best for workout'},
                   'Sony WH-1000XM4': {'brand': 'Sony', 'price': 414.00, 'speciality': 'best sounding bass, best for workout, Best Bluetooth codec support'},
@@ -229,6 +230,8 @@ print("Select battery life you want from the following: ")
 
 '''
 
+
+# set initial values
 price_min = 0.00
 price_max = 0.00
 brand = "N/A"
@@ -238,6 +241,7 @@ battery = "N/A"
 functions = "N/A"
 
 
+# Category - let user choose which kind of headphone
 def category_fc():
     global chosen_dict
     try:
@@ -258,7 +262,7 @@ def category_fc():
         category_fc()
 
 
-# Price range
+# Price range - user enter price range of product
 def price_range_fc():
     global price_min, price_max
     try:
@@ -270,7 +274,7 @@ def price_range_fc():
         price_range_fc()
 
 
-# Brand
+# Brand - brand of product
 def brand_fc():
     try:
         brand_choices = ["Anker", "Apple", "Bang & Olufsen", "Beats", "Belkin", "Bose", "Bowers & Wilkins", "Edifier", "EPOS",
@@ -285,7 +289,7 @@ def brand_fc():
         brand_fc()
 
 
-# Functions
+# Functions - functions of product included
 def functions_fc():
     try:
         functions_choices = ["Active Noise Cancelling", "Ambient Sound", "Auto Pause/Play", "Low Latency",
@@ -297,7 +301,7 @@ def functions_fc():
         functions_fc()
 
 
-# Support Codec
+# Support Codec - codec of product supported
 def codec_fc():
     global codec
     try:
@@ -308,7 +312,7 @@ def codec_fc():
         codec_fc()
 
 
-# App support
+# App support - choice on having app support or not
 def app_support_fc():
     global app_support
     try:
@@ -319,7 +323,7 @@ def app_support_fc():
         app_support_fc()
 
 
-# Battery Life
+# Battery Life - Battery life-long in hrs
 def battery_life_fc():
     global battery
     try:
@@ -329,7 +333,7 @@ def battery_life_fc():
         print("Invalid choice!")
         battery_life_fc()
 
-# Speciality
+# Speciality - Special or Honours E.g. Best value
 '''def speciality_fc():
     global speciality
     speciality_choices = ["Value", "Cheapest", "Pricey", "Long Usage Hours", "Good Sounding (in price range)",
@@ -337,7 +341,7 @@ def battery_life_fc():
     return speciality == input("Enter speciality (" + ", ".join(speciality_choices) + "): ")'''
 
 
-# def recommendation(price_min, price_max, brand, functions, codec):  #
+# Recommendation function call out previous functions and filter the products
 def recommendation():
     # Get user preferences
     category_fc()
@@ -348,7 +352,7 @@ def recommendation():
     app_support_fc()
     battery_life_fc()
 
-    # Filter products based on user preferences
+    # Filter products based on user choices
     filtered_products = []
     for key, product_info in chosen_dict.items():
         if (price_min <= product_info['price'] <= price_max) or (price_min == 0.00 and price_max == 0.00):

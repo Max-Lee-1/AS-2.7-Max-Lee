@@ -11,6 +11,8 @@
                               Speciality (added form reference): the best overall, Best in audio, best in user-friendly...
                               Info: Ship Y/N; Retail Y/N; Overall rating (May add other ratings);
 '''
+
+# dictionary for options - includes price, brand, functions, Bluetooth Codec, App support, Battery Life and Speciality
 headphone_dict = {'Sony WH-1000XM5': {'brand': 'Sony', 'price': 595.00, 'speciality': 'best all rounded, best ANC, comfortable'},
                   'Apple Airpods Max': {'brand': 'Apple', 'price': 999.00, 'speciality': 'best iphone, 2nd most expensive, 2nd best for workout'},
                   'Sony WH-1000XM4': {'brand': 'Sony', 'price': 414.00, 'speciality': 'best sounding bass, best for workout, Best Bluetooth codec support'},
@@ -238,14 +240,20 @@ functions = "N/A"
 
 def category_fc():
     global chosen_dict
-    category_choice = input("Which category are you looking for? (Enter 'headphone' or 'earbud'): ")
-    if category_choice.lower() == "headphone":
-        chosen_dict = headphone_dict
-        return
-    elif category_choice.lower() == "earbud":
-        chosen_dict = earbud_dict
-        return
-    else:
+    try:
+        category_choice = input("Which category are you looking for? (Enter 'headphone' or 'earbud' or 'both'): ")
+        if category_choice.lower() == "headphone":
+            chosen_dict = headphone_dict
+            return
+        elif category_choice.lower() == "earbud":
+            chosen_dict = earbud_dict
+            return
+        elif category_choice.lower() == "both":
+            chosen_dict = headphone_dict | earbud_dict
+        else:
+            print("Invalid choice!")
+            category_fc()
+    except ValueError:
         print("Invalid choice!")
         category_fc()
 
@@ -254,9 +262,8 @@ def category_fc():
 def price_range_fc():
     global price_min, price_max
     try:
-        price_range = input("Enter price range (e.g. 100-500): ").split("-")
-        price_min = float(price_range[0])
-        price_max = float(price_range[1])
+        price_min = float(input("Enter minimum price (e.g. 100): "))
+        price_max = float(input("Enter maximum price (e.g. 100): "))
         return
     except ValueError:
         print("Invalid choice!")
@@ -271,7 +278,7 @@ def brand_fc():
         print("Choose a brand from the following: ")
         for i, brand in enumerate(brand_choices):
             print(f"{i+1}. {brand}")
-        brand_choice = int(input("Enter your choice: "))
+        brand_choice = int(input("Enter your choice (e.g. 16): "))
         return brand == brand_choices[brand_choice-1]
     except ValueError:
         print("Invalid choice!")
@@ -283,11 +290,12 @@ def functions_fc():
     try:
         functions_choices = ["Active Noise Cancelling", "Ambient Sound", "Auto Pause/Play", "Low Latency",
                              "Passive Noise Cancelling", "Quick Charge", "Voice Call", "Water Resistence", "Wireless Charging", "N/A"]
-        functions = input("Enter functions (" + ", ".join(functions_choices) + "): ").split(",")
+        functions = input("Here are some functions:\n - " + " \n - ".join(functions_choices) + "\nEnter functions: ").split(",")
         return functions == [f.strip() for f in functions]
     except ValueError:
         print("Invalid choice!")
         functions_fc()
+
 
 # Support Codec
 def codec_fc():
@@ -344,9 +352,9 @@ def recommendation():
     filtered_products = []
     for key, product_info in chosen_dict.items():
         if (price_min <= product_info['price'] <= price_max) or (price_min == 0.00 and price_max == 0.00):
-            if (brand == "N/A") or (brand == product_info['brand']):
-                if (functions == "N/A") or (functions in product_info['speciality']):
-                    if (codec == "N/A") or (codec in product_info['speciality']):
+            if (brand == product_info['brand']) or (brand == "N/A"):
+                if (functions in product_info['speciality']) or (functions == "N/A"):
+                    if (codec in product_info['speciality']) or (codec == "N/A"):
                         if (app_support == "N/A") or ((app_support == "iOS" and product_info['brand'] == "Apple") or (app_support == "Android" and product_info['brand'] != "Apple")):
                             if (battery == "N/A") or ("battery" in product_info['speciality'] and battery.lower() in product_info['speciality']):
                                 filtered_products.append(key)
@@ -392,4 +400,5 @@ if len(filtered_products) == 0:
 # app_support_fc()
 # battery_life_fc()
 # speciality_fc()
+
 recommendation()  # price_min, price_max, brand, functions, codec

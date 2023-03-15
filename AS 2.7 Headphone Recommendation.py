@@ -12,6 +12,7 @@
                               Info: Ship Y/N; Retail Y/N; Overall rating (May add other ratings);
 '''
 
+
 # dictionary for options - includes price, brand, functions, Bluetooth Codec, App support, Battery Life and Speciality
 # need to add the options one by one
 headphone_dict = {'Sony WH-1000XM5': {'brand': 'Sony', 'price': 595.00, 'functions': 'Active Noise Cancelling, Ambient Sound, ', 'speciality': 'best all rounded, best ANC, comfortable'},
@@ -381,9 +382,9 @@ def battery_life_fc():
     return speciality == input("Enter speciality (" + ", ".join(speciality_choices) + "): ")'''
 
 
-# Recommendation function call out previous functions and filter the products
+# Recommend product to user by filtering preferences
 def recommendation():
-    # Get user preferences
+    # Get user preferences, call previous functions
     category_fc()
     price_range_fc()
     brand_fc()
@@ -395,17 +396,46 @@ def recommendation():
     # Filter products based on user choices
     filtered_products = []
     for key, product_info in chosen_dict.items():
-        if (price_min <= product_info['price'] <= price_max) or (price_min == 0.00 and price_max == 0.00):
-            if (brand in product_info['brand']) or (brand == "N/A"):
-                if (functions in product_info['speciality']) or (functions == "N/A"):
-                    if (codec in product_info['speciality']) or (codec == "N/A"):
-                        if (app_support == "N/A") or ((app_support == "iOS" and product_info['brand'] == "Apple") or (app_support == "Android" and product_info['brand'] != "Apple")):
-                            if (battery == "N/A") or ("battery" in product_info['speciality'] and battery.lower() in product_info['speciality']):
-                                filtered_products.append(key)
+        if (price_min <= product_info['price'] <= price_max) or (price_min == 0.00 and price_max == 0.00) and (brand in product_info['brand']) or (brand == "N/A"):
+            if (functions in product_info['speciality']) or (functions == "N/A"):
+                if (codec in product_info['speciality']) or (codec == "N/A"):
+                    if (app_support == "N/A") or ((app_support == "iOS" and product_info['brand'] == "Apple") or (app_support == "Android" and product_info['brand'] != "Apple")):
+                        if (battery == "N/A") or ("battery" in product_info['speciality'] and battery.lower() in product_info['speciality']):
+                            filtered_products.append(key)
     print(filtered_products)
 
 
 '''    
+16-03
+if chosen_dict == headphone_dict:
+    category_name = "headphones"
+else:
+    category_name = "earbuds"
+    
+recommended_list = []
+
+for product, features in chosen_dict.items():
+    if price_min <= features['price'] <= price_max and (brand == "N/A" or features['brand'] == brand) and (codec == "N/A" or codec in features['speciality']):
+        if app_support != "N/A":
+            if app_support == "Yes":
+                if "app support" in features and features["app support"] == True:
+                    recommended_list.append(product)
+            elif app_support == "No":
+                if "app support" not in features or features["app support"] == False:
+                    recommended_list.append(product)
+        else:
+            recommended_list.append(product)
+
+if len(recommended_list) == 0:
+    return "No product found matching the criteria"
+else:
+    output = f"Recommended {category_name} within the price range ${price_min} to ${price_max} and with {brand} brand, {codec} codec support, {app_support} app support, {battery} battery life and {functions} functions: "
+    output += ", ".join(recommended_list)
+    return output
+
+
+
+
 if len(filtered_products) == 0:
         print("No products found with the given preferences!")
     else:

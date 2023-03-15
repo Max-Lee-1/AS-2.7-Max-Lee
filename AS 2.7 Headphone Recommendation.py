@@ -14,7 +14,7 @@
 
 # dictionary for options - includes price, brand, functions, Bluetooth Codec, App support, Battery Life and Speciality
 # need to add the options one by one
-headphone_dict = {'Sony WH-1000XM5': {'brand': 'Sony', 'price': 595.00, 'speciality': 'best all rounded, best ANC, comfortable'},
+headphone_dict = {'Sony WH-1000XM5': {'brand': 'Sony', 'price': 595.00, 'functions': 'Active Noise Cancelling, Ambient Sound, ', 'speciality': 'best all rounded, best ANC, comfortable'},
                   'Apple Airpods Max': {'brand': 'Apple', 'price': 999.00, 'speciality': 'best iphone, 2nd most expensive, 2nd best for workout'},
                   'Sony WH-1000XM4': {'brand': 'Sony', 'price': 414.00, 'speciality': 'best sounding bass, best for workout, Best Bluetooth codec support'},
                   'Bose Noise Cancelling Headphones 700': {'brand': 'Bose', 'price': 699.95, 'speciality': 'best phone call'},
@@ -41,7 +41,35 @@ earbud_dict = {'Samsung Galaxy Buds 2': {'brand': 'Samsung', 'price': 279.00, 's
                'Sony WF-C500': {'brand': 'Sony', 'price': 115.00, 'speciality': 'best sounding cheapest'},
                 }
 
+
+brand_list = ["Anker", "Apple", "Bang & Olufsen", "Beats", "Belkin", "Bose", "Bowers & Wilkins", "Edifier", "EPOS",
+              "Jabra", "Logitech", "Nothing", "Samsung", "Sennheiser", "Sony", "N/A"]
+
+functions_list = ["Active Noise Cancelling", "Ambient Sound", "Auto Pause/Play", "Low Latency",
+                  "Passive Noise Cancelling", "Quick Charge", "Voice Call", "Water Resistence", "Wireless Charging", "N/A"]
+
+codec_list = ["AAC", "aptX", "aptX Low Latency", "aptX Adaptive", "aptX HD", "LC3", "LDAC", "LHDC", "SBC", "N/A"]
+
+app_support_list = ["Yes", "No", "N/A"]
+
+battery_list = ["Less than 5 hours", "5-10 hours", "10-20 hours", "More than 20 hours", "N/A"]
+
+
 '''
+16-03
+headphone_list = [    ['Sony WH-1000XM5', 'Sony', 595.00, 'best all rounded, best ANC, comfortable'],
+    ['Apple Airpods Max', 'Apple', 999.00, 'best iphone, 2nd most expensive, 2nd best for workout'],
+    ['Sony WH-1000XM4', 'Sony', 414.00, 'best sounding bass, best for workout, Best Bluetooth codec support'],
+    ['Bose Noise Cancelling Headphones 700', 'Bose', 699.95, 'best phone call'],
+    ['Logitech G435 LIGHTSPEED Wireless', 'Logitech', 249.90, 'best budget gaming'],
+    ['Bowers & Wilkins Px7 S2 Headphones', 'Bowers & Wilkins', 649.00, 'best look, most comfort, 3rd best Bluetooth codec support'],
+    ['Sennheiser Momentum 4 Wireless', 'Sennheiser', 599.95, '2nd best sounding bass, 2nd best Bluetooth codec support'],
+    ['Belkin Soundform Mini', 'Belkin', 59.99, 'best for kids'],
+    ['Anker SoundCore Life Q30', 'Anker', 241.95, 'best value'],
+    ['Edifier W820NB', 'Edifier', 168.00, 'best sounding cheapest']
+]
+
+
 09-03:
 # Headphone/Earbuds Recommendation Program
 
@@ -277,25 +305,35 @@ def price_range_fc():
 # Brand - brand of product
 def brand_fc():
     try:
-        brand_choices = ["Anker", "Apple", "Bang & Olufsen", "Beats", "Belkin", "Bose", "Bowers & Wilkins", "Edifier", "EPOS",
-                         "Jabra", "Logitech", "Nothing", "Samsung", "Sennheiser", "Sony", "N/A"]
         print("Choose a brand from the following: ")
-        for i, brand in enumerate(brand_choices):
+        for i, brand in enumerate(brand_list):
             print(f"{i+1}. {brand}")
         brand_choice = int(input("Enter your choice (e.g. 16): "))
-        return brand == brand_choices[brand_choice-1]
+        return brand == brand_list[brand_choice - 1]
     except ValueError:
         print("Invalid choice!")
         brand_fc()
 
 
 # Functions - functions of product included
-def functions_fc():
+'''def functions_fc():
     try:
         functions_choices = ["Active Noise Cancelling", "Ambient Sound", "Auto Pause/Play", "Low Latency",
                              "Passive Noise Cancelling", "Quick Charge", "Voice Call", "Water Resistence", "Wireless Charging", "N/A"]
         functions = input("Here are some functions:\n - " + " \n - ".join(functions_choices) + "\nEnter functions: ").split(",")
         return functions == [f.strip() for f in functions]
+    except ValueError:
+        print("Invalid choice!")
+        functions_fc()'''  # previous ver.
+
+
+def functions_fc():
+    try:
+        print("Choose a function from the following: ")
+        for i, functions in enumerate(functions_list):
+            print(f"{i+1}. {functions}")
+        functions_choice = int(input("Enter your choice (e.g. 16): "))
+        return functions == functions_list[functions_choice - 1]
     except ValueError:
         print("Invalid choice!")
         functions_fc()
@@ -305,8 +343,11 @@ def functions_fc():
 def codec_fc():
     global codec
     try:
-        codec_choices = ["AAC", "aptX", "aptX Low Latency", "aptX Adaptive", "aptX HD", "LC3", "LDAC", "LHDC", "SBC", "N/A"]
-        return codec == input("Enter support codec (" + ", ".join(codec_choices) + "): ")
+        print("Choose a codec from the following: ")
+        for i, codecs in enumerate(codec_list):
+            print(f"{i+1}. {codecs}")
+        codec_choice = int(input("Enter your choice (e.g. 16): "))
+        return codec == codec_list[codec_choice - 1]
     except ValueError:
         print("Invalid choice!")
         codec_fc()
@@ -316,8 +357,7 @@ def codec_fc():
 def app_support_fc():
     global app_support
     try:
-        app_support_choices = ["Yes", "No", "N/A"]
-        return app_support == input("Enter app support (" + ", ".join(app_support_choices) + "): ")
+        return app_support == input("Enter app support (" + ", ".join(app_support_list) + "): ")
     except ValueError:
         print("Invalid choice!")
         app_support_fc()
@@ -327,11 +367,11 @@ def app_support_fc():
 def battery_life_fc():
     global battery
     try:
-        battery_choices = ["Less than 5 hours", "5-10 hours", "10-20 hours", "More than 20 hours", "N/A"]
-        return battery == input("Enter battery life (" + ", ".join(battery_choices) + "): ")
+        return battery == input("Enter battery life (" + ", ".join(battery_list) + "): ")
     except ValueError:
         print("Invalid choice!")
         battery_life_fc()
+
 
 # Speciality - Special or Honours E.g. Best value
 '''def speciality_fc():
@@ -356,15 +396,13 @@ def recommendation():
     filtered_products = []
     for key, product_info in chosen_dict.items():
         if (price_min <= product_info['price'] <= price_max) or (price_min == 0.00 and price_max == 0.00):
-            if (brand == product_info['brand']) or (brand == "N/A"):
+            if (brand in product_info['brand']) or (brand == "N/A"):
                 if (functions in product_info['speciality']) or (functions == "N/A"):
                     if (codec in product_info['speciality']) or (codec == "N/A"):
                         if (app_support == "N/A") or ((app_support == "iOS" and product_info['brand'] == "Apple") or (app_support == "Android" and product_info['brand'] != "Apple")):
                             if (battery == "N/A") or ("battery" in product_info['speciality'] and battery.lower() in product_info['speciality']):
                                 filtered_products.append(key)
     print(filtered_products)
-
-
 
 
 '''    
@@ -396,7 +434,6 @@ if len(filtered_products) == 0:
                                 ('SBC' in codec and 'SBC' in product_dict[product].get('codec', '')) or \
                                 ('LDAC' in codec and 'LDAC' in product_dict[product].get('codec', '')):
                             recommendations.append(product)'''
-
 # price_range_fc()
 # brand_fc()
 # functions_fc()

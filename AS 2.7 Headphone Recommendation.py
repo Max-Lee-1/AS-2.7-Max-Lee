@@ -257,7 +257,7 @@ app = app_choices[app_choice-1]
 battery_life_choices = ["<5 hours", "5-10 hours", "10-20 hours", ">20 hours"]
 print("Select battery life you want from the following: ")
 
-'''
+'''  # previous codes
 
 
 # set initial values
@@ -358,7 +358,11 @@ def codec_fc():
 def app_support_fc():
     global app_support
     try:
-        return app_support == input("Enter app support (" + ", ".join(app_support_list) + "): ")
+        print("Would you like the headphone/earbud to include app support?")
+        for i, app_support in enumerate(app_support_list):
+            print(f"{i+1}. {app_support}")
+        app_support_choice = int(input("Enter your choice (e.g. 1): "))
+        return app_support == app_support_list[app_support_choice - 1]
     except ValueError:
         print("Invalid choice!")
         app_support_fc()
@@ -368,7 +372,11 @@ def app_support_fc():
 def battery_life_fc():
     global battery
     try:
-        return battery == input("Enter battery life (" + ", ".join(battery_list) + "): ")
+        print("Please choose battery life long (in Hrs): ")
+        for i, battery in enumerate(battery_list):
+            print(f"{i+1}. {battery}")
+        battery_choice = int(input("Enter your choice (e.g. 1): "))
+        return battery == battery_list[battery_choice - 1]
     except ValueError:
         print("Invalid choice!")
         battery_life_fc()
@@ -392,6 +400,7 @@ def recommendation():
     codec_fc()
     app_support_fc()
     battery_life_fc()
+    # speciality_fc()
 
     # Filter products based on user choices
     filtered_products = []
@@ -433,9 +442,6 @@ else:
     output += ", ".join(recommended_list)
     return output
 
-
-
-
 if len(filtered_products) == 0:
         print("No products found with the given preferences!")
     else:
@@ -463,13 +469,7 @@ if len(filtered_products) == 0:
                         if ('AAC' in codec and 'AAC' in product_dict[product].get('codec', '')) or \
                                 ('SBC' in codec and 'SBC' in product_dict[product].get('codec', '')) or \
                                 ('LDAC' in codec and 'LDAC' in product_dict[product].get('codec', '')):
-                            recommendations.append(product)'''
-# price_range_fc()
-# brand_fc()
-# functions_fc()
-# codec_fc()
-# app_support_fc()
-# battery_life_fc()
-# speciality_fc()
+                            recommendations.append(product)'''  # unused code
+
 
 recommendation()  # price_min, price_max, brand, functions, codec

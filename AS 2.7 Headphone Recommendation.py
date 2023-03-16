@@ -12,49 +12,58 @@
                               Info: Ship Y/N; Retail Y/N; Overall rating (May add other ratings);
 '''
 
-
 # dictionary for options - includes price, brand, functions, Bluetooth Codec, App support, Battery Life and Speciality
 # need to add the options one by one
-headphone_dict = {'Sony WH-1000XM5': {'brand': 'Sony', 'price': 595.00, 'functions': 'Active Noise Cancelling, Ambient Sound, ', 'speciality': 'best all rounded, best ANC, comfortable'},
-                  'Apple Airpods Max': {'brand': 'Apple', 'price': 999.00, 'speciality': 'best iphone, 2nd most expensive, 2nd best for workout'},
-                  'Sony WH-1000XM4': {'brand': 'Sony', 'price': 414.00, 'speciality': 'best sounding bass, best for workout, Best Bluetooth codec support'},
-                  'Bose Noise Cancelling Headphones 700': {'brand': 'Bose', 'price': 699.95, 'speciality': 'best phone call'},
-                  'Logitech G435 LIGHTSPEED Wireless': {'brand': 'Logitech', 'price': 249.90, 'speciality': 'best budget gaming'},
-                  'Bowers & Wilkins Px7 S2 Headphones': {'brand': 'Bowers & Wilkins', 'price': 649.00, 'speciality': 'best look, most comfort, 3rd best Bluetooth codec support'},
-                  'Sennheiser Momentum 4 Wireless': {'brand': 'Sennheiser', 'price': 599.95, 'speciality': '2nd best sounding bass, 2nd best Bluetooth codec support'},
-                  'Belkin Soundform Mini': {'brand': 'Belkin', 'price': 59.99, 'speciality': 'best for kids'},
-                  'Anker SoundCore Life Q30': {'brand': 'Anker', 'price': 241.95, 'speciality': 'best value'},
-                  'Edifier W820NB': {'brand': 'Edifier', 'price': 168.00, 'speciality': 'best sounding cheapest'},
-                  }
+headphone_dict = {
+    'Sony WH-1000XM5': {'brand': 'Sony', 'price': 595.00, 'functions': 'Active Noise Cancelling, Ambient Sound, ',
+                        'speciality': 'best all rounded, best ANC, comfortable'},
+    'Apple Airpods Max': {'brand': 'Apple', 'price': 999.00,
+                          'speciality': 'best iphone, 2nd most expensive, 2nd best for workout'},
+    'Sony WH-1000XM4': {'brand': 'Sony', 'price': 414.00,
+                        'speciality': 'best sounding bass, best for workout, Best Bluetooth codec support'},
+    'Bose Noise Cancelling Headphones 700': {'brand': 'Bose', 'price': 699.95, 'speciality': 'best phone call'},
+    'Logitech G435 LIGHTSPEED Wireless': {'brand': 'Logitech', 'price': 249.90, 'speciality': 'best budget gaming'},
+    'Bowers & Wilkins Px7 S2 Headphones': {'brand': 'Bowers & Wilkins', 'price': 649.00,
+                                           'speciality': 'best look, most comfort, 3rd best Bluetooth codec support'},
+    'Sennheiser Momentum 4 Wireless': {'brand': 'Sennheiser', 'price': 599.95,
+                                       'speciality': '2nd best sounding bass, 2nd best Bluetooth codec support'},
+    'Belkin Soundform Mini': {'brand': 'Belkin', 'price': 59.99, 'speciality': 'best for kids'},
+    'Anker SoundCore Life Q30': {'brand': 'Anker', 'price': 241.95, 'speciality': 'best value'},
+    'Edifier W820NB': {'brand': 'Edifier', 'price': 168.00, 'speciality': 'best sounding cheapest'},
+    }
 
 earbud_dict = {'Samsung Galaxy Buds 2': {'brand': 'Samsung', 'price': 279.00, 'speciality': 'best all rounded'},
-               'Apple Airpods Pro (Gen 2)': {'brand': 'Apple', 'price': 479.00, 'speciality': 'best iphone, best sounding upper-mid range price, expensive'},
+               'Apple Airpods Pro (Gen 2)': {'brand': 'Apple', 'price': 479.00,
+                                             'speciality': 'best iphone, best sounding upper-mid range price, expensive'},
                'Beats Fit Pro': {'brand': 'Beats', 'price': 349.95, 'speciality': 'best workout'},
-               'Sony WF-1000XM4': {'brand': 'Sony', 'price': 369.00, 'speciality': 'best ANC (Active Noise Cancelling), 2nd best Bluetooth codec support'},
+               'Sony WF-1000XM4': {'brand': 'Sony', 'price': 369.00,
+                                   'speciality': 'best ANC (Active Noise Cancelling), 2nd best Bluetooth codec support'},
                'Jabra Elite 7 Active': {'brand': 'Jabra', 'price': 284.00, 'speciality': 'best versatility'},
-               'Jabra Elite 7 Pro': {'brand': 'Jabra', 'price': 296.00, 'speciality': 'best sounding in lower-mid range price'},
+               'Jabra Elite 7 Pro': {'brand': 'Jabra', 'price': 296.00,
+                                     'speciality': 'best sounding in lower-mid range price'},
                'EPOS GTW 270 Hybrid': {'brand': 'EPOS', 'price': 239.00, 'speciality': 'best gaming'},
                'Nothing Ear 1': {'brand': 'Nothing', 'price': 189.00, 'speciality': 'best looking'},
                'Sennheiser Momentum TW 3': {'brand': 'Sennheiser', 'price': 378.00, 'speciality': 'best sounding bass'},
-               'Earfun Air Pro 3': {'brand': 'Earfun', 'price': 139.00, 'speciality': 'best value, good-looking, all rounded'},
-               'Bang & Olufsen Beoplay EX': {'brand': 'Bang & Olufsen', 'price': 775.00, 'speciality': 'Most expensive, great-looking, nice sound'},
+               'Earfun Air Pro 3': {'brand': 'Earfun', 'price': 139.00,
+                                    'speciality': 'best value, good-looking, all rounded'},
+               'Bang & Olufsen Beoplay EX': {'brand': 'Bang & Olufsen', 'price': 775.00,
+                                             'speciality': 'Most expensive, great-looking, nice sound'},
                'Jabra Elite 85t': {'brand': 'Jabra', 'price': 199.95, 'speciality': 'best Bluetooth codec support'},
                'Sony WF-C500': {'brand': 'Sony', 'price': 115.00, 'speciality': 'best sounding cheapest'},
-                }
-
+               }
 
 brand_list = ["Anker", "Apple", "Bang & Olufsen", "Beats", "Belkin", "Bose", "Bowers & Wilkins", "Edifier", "EPOS",
               "Jabra", "Logitech", "Nothing", "Samsung", "Sennheiser", "Sony", "N/A"]
 
 functions_list = ["Active Noise Cancelling", "Ambient Sound", "Auto Pause/Play", "Low Latency",
-                  "Passive Noise Cancelling", "Quick Charge", "Voice Call", "Water Resistence", "Wireless Charging", "N/A"]
+                  "Passive Noise Cancelling", "Quick Charge", "Voice Call", "Water Resistence", "Wireless Charging",
+                  "N/A"]
 
 codec_list = ["AAC", "aptX", "aptX Low Latency", "aptX Adaptive", "aptX HD", "LC3", "LDAC", "LHDC", "SBC", "N/A"]
 
 app_support_list = ["Yes", "No", "N/A"]
 
 battery_list = ["Less than 5 hours", "5-10 hours", "10-20 hours", "More than 20 hours", "N/A"]
-
 
 '''
 16-03
@@ -259,7 +268,6 @@ print("Select battery life you want from the following: ")
 
 '''  # previous codes
 
-
 # set initial values
 price_min = 0.00
 price_max = 0.00
@@ -312,7 +320,7 @@ def brand_fc():
     try:
         print("Choose a brand from the following: ")
         for i, brand in enumerate(brand_list):
-            print(f"{i+1}. {brand}")
+            print(f"{i + 1}. {brand}")
         brand_choice = int(input("Enter your choice (e.g. 16): "))
         if brand_choice <= 0 or brand_choice > 16:
             print("Invalid choice!")
@@ -340,7 +348,7 @@ def functions_fc():
     try:
         print("Choose a function from the following: ")
         for i, functions in enumerate(functions_list):
-            print(f"{i+1}. {functions}")
+            print(f"{i + 1}. {functions}")
         functions_choice = int(input("Enter your choice (e.g. 10): "))
         if functions_choice <= 0 or functions_choice > 10:
             print("Invalid choice!")
@@ -358,7 +366,7 @@ def codec_fc():
     try:
         print("Choose a codec from the following: ")
         for i, codecs in enumerate(codec_list):
-            print(f"{i+1}. {codecs}")
+            print(f"{i + 1}. {codecs}")
         codec_choice = int(input("Enter your choice (e.g. 10): "))
         if codec_choice <= 0 or codec_choice > 10:
             print("Invalid choice!")
@@ -376,7 +384,7 @@ def app_support_fc():
     try:
         print("Would you like the headphone/earbud to include app support?")
         for i, app_support in enumerate(app_support_list):
-            print(f"{i+1}. {app_support}")
+            print(f"{i + 1}. {app_support}")
         app_support_choice = int(input("Enter your choice (e.g. 1): "))
         if app_support_choice <= 0 or app_support_choice > 3:
             print("Invalid choice!")
@@ -394,7 +402,7 @@ def battery_life_fc():
     try:
         print("Please choose battery life long (in Hrs): ")
         for i, battery in enumerate(battery_list):
-            print(f"{i+1}. {battery}")
+            print(f"{i + 1}. {battery}")
         battery_choice = int(input("Enter your choice (e.g. 1): "))
         if battery_choice <= 0 or battery_choice > 5:
             print("Invalid choice!")
@@ -429,11 +437,15 @@ def recommendation():
     # Filter products based on user choices
     filtered_products = []
     for key, product_info in chosen_dict.items():
-        if (price_min <= product_info['price'] <= price_max) or (price_min == 0.00 and price_max == 0.00) and (brand in product_info['brand']) or (brand == "N/A"):
+        if (price_min <= product_info['price'] <= price_max) or (price_min == 0.00 and price_max == 0.00) and (
+                brand in product_info['brand']) or (brand == "N/A"):
             if (functions in product_info['speciality']) or (functions == "N/A"):
                 if (codec in product_info['speciality']) or (codec == "N/A"):
-                    if (app_support == "N/A") or ((app_support == "iOS" and product_info['brand'] == "Apple") or (app_support == "Android" and product_info['brand'] != "Apple")):
-                        if (battery == "N/A") or ("battery" in product_info['speciality'] and battery.lower() in product_info['speciality']):
+                    if (app_support == "N/A") or ((app_support == "iOS" and product_info['brand'] == "Apple") or (
+                            app_support == "Android" and product_info['brand'] != "Apple")):
+                        if (battery == "N/A") or (
+                                "battery" in product_info['speciality'] and battery.lower() in product_info[
+                            'speciality']):
                             filtered_products.append(key)
     print(filtered_products)
 
@@ -494,6 +506,5 @@ if len(filtered_products) == 0:
                                 ('SBC' in codec and 'SBC' in product_dict[product].get('codec', '')) or \
                                 ('LDAC' in codec and 'LDAC' in product_dict[product].get('codec', '')):
                             recommendations.append(product)'''  # unused code
-
 
 recommendation()  # price_min, price_max, brand, functions, codec

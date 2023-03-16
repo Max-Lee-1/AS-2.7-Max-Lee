@@ -296,7 +296,11 @@ def price_range_fc():
     global price_min, price_max
     try:
         price_min = float(input("Enter minimum price (e.g. 100): "))
-        price_max = float(input("Enter maximum price (e.g. 100): "))
+        if price_min < 0:
+            print("You can't enter negative digits. Try again.")
+            price_range_fc()
+        else:
+            price_max = float(input("Enter maximum price (e.g. 100): "))
         return
     except ValueError:
         print("Invalid choice!")
@@ -310,7 +314,11 @@ def brand_fc():
         for i, brand in enumerate(brand_list):
             print(f"{i+1}. {brand}")
         brand_choice = int(input("Enter your choice (e.g. 16): "))
-        return brand == brand_list[brand_choice - 1]
+        if brand_choice <= 0 or brand_choice > 16:
+            print("Invalid choice!")
+            brand_fc()
+        else:
+            return brand == brand_list[brand_choice - 1]
     except ValueError:
         print("Invalid choice!")
         brand_fc()
@@ -333,8 +341,12 @@ def functions_fc():
         print("Choose a function from the following: ")
         for i, functions in enumerate(functions_list):
             print(f"{i+1}. {functions}")
-        functions_choice = int(input("Enter your choice (e.g. 16): "))
-        return functions == functions_list[functions_choice - 1]
+        functions_choice = int(input("Enter your choice (e.g. 10): "))
+        if functions_choice <= 0 or functions_choice > 10:
+            print("Invalid choice!")
+            functions_fc()
+        else:
+            return functions == functions_list[functions_choice - 1]
     except ValueError:
         print("Invalid choice!")
         functions_fc()
@@ -347,8 +359,12 @@ def codec_fc():
         print("Choose a codec from the following: ")
         for i, codecs in enumerate(codec_list):
             print(f"{i+1}. {codecs}")
-        codec_choice = int(input("Enter your choice (e.g. 16): "))
-        return codec == codec_list[codec_choice - 1]
+        codec_choice = int(input("Enter your choice (e.g. 10): "))
+        if codec_choice <= 0 or codec_choice > 10:
+            print("Invalid choice!")
+            codec_fc()
+        else:
+            return codec == codec_list[codec_choice - 1]
     except ValueError:
         print("Invalid choice!")
         codec_fc()
@@ -362,7 +378,11 @@ def app_support_fc():
         for i, app_support in enumerate(app_support_list):
             print(f"{i+1}. {app_support}")
         app_support_choice = int(input("Enter your choice (e.g. 1): "))
-        return app_support == app_support_list[app_support_choice - 1]
+        if app_support_choice <= 0 or app_support_choice > 3:
+            print("Invalid choice!")
+            app_support_fc()
+        else:
+            return app_support == app_support_list[app_support_choice - 1]
     except ValueError:
         print("Invalid choice!")
         app_support_fc()
@@ -376,7 +396,11 @@ def battery_life_fc():
         for i, battery in enumerate(battery_list):
             print(f"{i+1}. {battery}")
         battery_choice = int(input("Enter your choice (e.g. 1): "))
-        return battery == battery_list[battery_choice - 1]
+        if battery_choice <= 0 or battery_choice > 5:
+            print("Invalid choice!")
+            battery_life_fc()
+        else:
+            return battery == battery_list[battery_choice - 1]
     except ValueError:
         print("Invalid choice!")
         battery_life_fc()

@@ -302,13 +302,19 @@ def category_fc():
 # Price range - user enter price range of product
 def price_range_fc():
     global price_min, price_max
+    n = 0
     try:
         price_min = float(input("Enter minimum price (e.g. 100): "))
         if price_min < 0:
             print("You can't enter negative digits. Try again.")
             price_range_fc()
         else:
-            price_max = float(input("Enter maximum price (e.g. 100): "))
+            while n == 0:
+                price_max = float(input("Enter maximum price (e.g. 100): "))
+                if price_max < price_min:
+                    print("Maximum price must not be smaller minimum price.")
+                else:
+                    n = 1
         return
     except ValueError:
         print("Invalid choice!")

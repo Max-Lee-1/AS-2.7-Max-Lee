@@ -15,7 +15,7 @@
 # dictionary for options - includes price, brand, functions, Bluetooth Codec, App support, Battery Life and Speciality
 # need to add the options one by one
 headphone_dict = {
-    'Sony WH-1000XM5': {'brand': 'Sony', 'price': 595.00, 'functions': 'Active Noise Cancelling, Ambient Sound, ',
+    'Sony WH-1000XM5': {'brand': 'Sony', 'price': 595.00, 'functions': 'Active Noise Cancelling, Ambient Sound',
                         'speciality': 'best all rounded, best ANC, comfortable'},
     'Apple Airpods Max': {'brand': 'Apple', 'price': 999.00,
                           'speciality': 'best iphone, 2nd most expensive, 2nd best for workout'},
@@ -52,7 +52,7 @@ earbud_dict = {'Samsung Galaxy Buds 2': {'brand': 'Samsung', 'price': 279.00, 's
                'Sony WF-C500': {'brand': 'Sony', 'price': 115.00, 'speciality': 'best sounding cheapest'},
                }
 
-brand_list = ["Anker", "Apple", "Bang & Olufsen", "Beats", "Belkin", "Bose", "Bowers & Wilkins", "Edifier", "EPOS",
+brand_list = ['Anker', "Apple", "Bang & Olufsen", "Beats", "Belkin", "Bose", "Bowers & Wilkins", "Edifier", "EPOS",
               "Jabra", "Logitech", "Nothing", "Samsung", "Sennheiser", "Sony", "N/A"]
 
 functions_list = ["Active Noise Cancelling", "Ambient Sound", "Auto Pause/Play", "Low Latency",
@@ -65,6 +65,259 @@ app_support_list = ["Yes", "No", "N/A"]
 
 battery_list = ["Less than 5 hours", "5-10 hours", "10-20 hours", "More than 20 hours", "N/A"]
 
+
+# set initial values
+price_min = 0.00
+price_max = 0.00
+codec = "N/A"
+app_support = "N/A"
+battery = "N/A"
+functions = "N/A"
+
+
+# Category - let user choose which kind of headphone
+def category_fc():
+    global chosen_dict
+    try:
+        category_choice = input("Which category are you looking for? (Enter 'headphone' or 'earbud' or 'both'): ")
+        if category_choice.lower() == "headphone":
+            chosen_dict = headphone_dict
+            return
+        elif category_choice.lower() == "earbud":
+            chosen_dict = earbud_dict
+            return
+        elif category_choice.lower() == "both":
+            chosen_dict = headphone_dict | earbud_dict
+            return
+        else:
+            print("Invalid choice!")
+            category_fc()
+    except ValueError:
+        print("Invalid choice!")
+        category_fc()
+
+
+# Price range - user enter price range of product
+def price_range_fc():
+    global price_min, price_max
+    n = 0
+    try:
+        price_min = float(input("Enter minimum price (e.g. 100): "))
+        if price_min < 0:
+            print("You can't enter negative digits. Try again.")
+            price_range_fc()
+        else:
+            while n == 0:
+                price_max = float(input("Enter maximum price (e.g. 100): "))
+                if price_max < price_min:
+                    print("Maximum price must not be smaller minimum price.")
+                elif price_max <= 0:
+                    print("Maximum price must be greater than $0.")
+                else:
+                    n = 1
+        return
+    except ValueError:
+        print("Invalid choice!")
+        price_range_fc()
+
+
+# Brand - brand of product
+def brand_fc():
+    global brand
+    brand = "N/A"
+    try:
+        print("Choose a brand from the following: ")
+        for i, n in enumerate(brand_list):
+            print(f"{i + 1}. {n}")
+        brand_choice = int(input("Enter your choice (e.g. 16): "))
+        if brand_choice <= 0 or brand_choice > 16:
+            print("Invalid choice!")
+            brand_fc()
+        else:
+            print(brand_choice)
+            return brand == brand_list[brand_choice - 1]
+    except ValueError:
+        print("Invalid choice!")
+        brand_fc()
+
+
+# Functions - functions of product included
+'''def functions_fc():
+    try:
+        functions_choices = ["Active Noise Cancelling", "Ambient Sound", "Auto Pause/Play", "Low Latency",
+                             "Passive Noise Cancelling", "Quick Charge", "Voice Call", "Water Resistence", "Wireless Charging", "N/A"]
+        functions = input("Here are some functions:\n - " + " \n - ".join(functions_choices) + "\nEnter functions: ").split(",")
+        return functions == [f.strip() for f in functions]
+    except ValueError:
+        print("Invalid choice!")
+        functions_fc()'''  # previous ver.
+
+
+def functions_fc():
+    global functions
+    try:
+        print("Choose a function from the following: ")
+        for i, n in enumerate(functions_list):
+            print(f"{i + 1}. {n}")
+        functions_choice = int(input("Enter your choice (e.g. 10): "))
+        if functions_choice <= 0 or functions_choice > 10:
+            print("Invalid choice!")
+            functions_fc()
+        else:
+            return functions == functions_list[functions_choice - 1]
+    except ValueError:
+        print("Invalid choice!")
+        functions_fc()
+
+
+# Support Codec - codec of product supported
+def codec_fc():
+    global codec
+    try:
+        print("Choose a codec from the following: ")
+        for i, n in enumerate(codec_list):
+            print(f"{i + 1}. {n}")
+        codec_choice = int(input("Enter your choice (e.g. 10): "))
+        if codec_choice <= 0 or codec_choice > 10:
+            print("Invalid choice!")
+            codec_fc()
+        else:
+            return codec == codec_list[codec_choice - 1]
+    except ValueError:
+        print("Invalid choice!")
+        codec_fc()
+
+
+# App support - choice on having app support or not
+def app_support_fc():
+    global app_support
+    try:
+        print("Would you like the headphone/earbud to include app support?")
+        for i, n in enumerate(app_support_list):
+            print(f"{i + 1}. {n}")
+        app_support_choice = int(input("Enter your choice (e.g. 1): "))
+        if app_support_choice <= 0 or app_support_choice > 3:
+            print("Invalid choice!")
+            app_support_fc()
+        else:
+            return app_support == app_support_list[app_support_choice - 1]
+    except ValueError:
+        print("Invalid choice!")
+        app_support_fc()
+
+
+# Battery Life - Battery life-long in hrs
+def battery_life_fc():
+    global battery
+    try:
+        print("Please choose battery life long (in Hrs): ")
+        for i, n in enumerate(battery_list):
+            print(f"{i + 1}. {n}")
+        battery_choice = int(input("Enter your choice (e.g. 1): "))
+        if battery_choice <= 0 or battery_choice > 5:
+            print("Invalid choice!")
+            battery_life_fc()
+        else:
+            return battery == battery_list[battery_choice - 1]
+    except ValueError:
+        print("Invalid choice!")
+        battery_life_fc()
+
+
+# Speciality - Special or Honours E.g. Best value
+'''def speciality_fc():
+    global speciality
+    speciality_choices = ["Value", "Cheapest", "Pricey", "Long Usage Hours", "Good Sounding (in price range)",
+                          "Best ANC", "Best Ambient", "Best Overall"]
+    return speciality == input("Enter speciality (" + ", ".join(speciality_choices) + "): ")'''
+
+
+# Recommend product to user by filtering preferences
+def recommendation():
+    # Get user preferences, call previous functions
+    category_fc()
+    price_range_fc()
+    brand_fc()
+    # print(brand)
+    functions_fc()
+    codec_fc()
+    app_support_fc()
+    battery_life_fc()
+    # speciality_fc()
+    print(price_min, price_max, brand, functions, codec, app_support, battery)
+    # Filter products based on user choices
+    filtered_products = []
+    for key, product_info in chosen_dict.items():
+        if price_min <= product_info['price'] <= price_max:
+            if (brand in product_info['brand']) or (brand == "N/A"):
+                if (functions in product_info['speciality']) or (functions == "N/A"):
+                    if (codec in product_info['speciality']) or (codec == "N/A"):
+                        if (app_support == "N/A") or ((app_support == "iOS" and product_info['brand'] == "Apple") or (
+                                app_support == "Android" and product_info['brand'] != "Apple")):
+                            if (battery == "N/A") or ("battery" in product_info['speciality'] and battery.lower() in product_info['speciality']):
+                                filtered_products.append(key)
+    print(filtered_products)
+
+
+recommendation()  # price_min, price_max, brand, functions, codec
+
+
+'''    
+16-03
+if chosen_dict == headphone_dict:
+    category_name = "headphones"
+else:
+    category_name = "earbuds"
+    
+recommended_list = []
+
+for product, features in chosen_dict.items():
+    if price_min <= features['price'] <= price_max and (brand == "N/A" or features['brand'] == brand) and (codec == "N/A" or codec in features['speciality']):
+        if app_support != "N/A":
+            if app_support == "Yes":
+                if "app support" in features and features["app support"] == True:
+                    recommended_list.append(product)
+            elif app_support == "No":
+                if "app support" not in features or features["app support"] == False:
+                    recommended_list.append(product)
+        else:
+            recommended_list.append(product)
+
+if len(recommended_list) == 0:
+    return "No product found matching the criteria"
+else:
+    output = f"Recommended {category_name} within the price range ${price_min} to ${price_max} and with {brand} brand, {codec} codec support, {app_support} app support, {battery} battery life and {functions} functions: "
+    output += ", ".join(recommended_list)
+    return output
+
+if len(filtered_products) == 0:
+        print("No products found with the given preferences!")
+    else:
+        print("Here are the products that match your preferences:")
+        for product in filtered_products:
+            print(product)
+
+# Initialize list of recommendations
+    recommendations = []
+
+    # Loop through headphones and earbuds dictionaries to find matches
+    for product_dict in [headphone_dict, earbud_dict]:
+        for key, price in product_dict.items():
+            # Filter by price range
+            if price_min <= price <= price_max:
+                print(key)
+                recommendations.append(key)
+    return recommendations
+
+# Filter by brand
+                if brand.lower() in product.lower():
+                    # Filter by functions
+                    if all(f.lower() in product.lower() for f in functions):
+                        # Filter by codec support
+                        if ('AAC' in codec and 'AAC' in product_dict[product].get('codec', '')) or \
+                                ('SBC' in codec and 'SBC' in product_dict[product].get('codec', '')) or \
+                                ('LDAC' in codec and 'LDAC' in product_dict[product].get('codec', '')):
+                            recommendations.append(product)'''  # unused code
 '''
 16-03
 headphone_list = [    ['Sony WH-1000XM5', 'Sony', 595.00, 'best all rounded, best ANC, comfortable'],
@@ -267,250 +520,3 @@ battery_life_choices = ["<5 hours", "5-10 hours", "10-20 hours", ">20 hours"]
 print("Select battery life you want from the following: ")
 
 '''  # previous codes
-
-# set initial values
-price_min = 0.00
-price_max = 0.00
-brand = "N/A"
-codec = "N/A"
-app_support = "N/A"
-battery = "N/A"
-functions = "N/A"
-
-
-# Category - let user choose which kind of headphone
-def category_fc():
-    global chosen_dict
-    try:
-        category_choice = input("Which category are you looking for? (Enter 'headphone' or 'earbud' or 'both'): ")
-        if category_choice.lower() == "headphone":
-            chosen_dict = headphone_dict
-            return
-        elif category_choice.lower() == "earbud":
-            chosen_dict = earbud_dict
-            return
-        elif category_choice.lower() == "both":
-            chosen_dict = headphone_dict | earbud_dict
-        else:
-            print("Invalid choice!")
-            category_fc()
-    except ValueError:
-        print("Invalid choice!")
-        category_fc()
-
-
-# Price range - user enter price range of product
-def price_range_fc():
-    global price_min, price_max
-    n = 0
-    try:
-        price_min = float(input("Enter minimum price (e.g. 100): "))
-        if price_min < 0:
-            print("You can't enter negative digits. Try again.")
-            price_range_fc()
-        else:
-            while n == 0:
-                price_max = float(input("Enter maximum price (e.g. 100): "))
-                if price_max < price_min:
-                    print("Maximum price must not be smaller minimum price.")
-                else:
-                    n = 1
-        return
-    except ValueError:
-        print("Invalid choice!")
-        price_range_fc()
-
-
-# Brand - brand of product
-def brand_fc():
-    try:
-        print("Choose a brand from the following: ")
-        for i, brand in enumerate(brand_list):
-            print(f"{i + 1}. {brand}")
-        brand_choice = int(input("Enter your choice (e.g. 16): "))
-        if brand_choice <= 0 or brand_choice > 16:
-            print("Invalid choice!")
-            brand_fc()
-        else:
-            return brand == brand_list[brand_choice - 1]
-    except ValueError:
-        print("Invalid choice!")
-        brand_fc()
-
-
-# Functions - functions of product included
-'''def functions_fc():
-    try:
-        functions_choices = ["Active Noise Cancelling", "Ambient Sound", "Auto Pause/Play", "Low Latency",
-                             "Passive Noise Cancelling", "Quick Charge", "Voice Call", "Water Resistence", "Wireless Charging", "N/A"]
-        functions = input("Here are some functions:\n - " + " \n - ".join(functions_choices) + "\nEnter functions: ").split(",")
-        return functions == [f.strip() for f in functions]
-    except ValueError:
-        print("Invalid choice!")
-        functions_fc()'''  # previous ver.
-
-
-def functions_fc():
-    try:
-        print("Choose a function from the following: ")
-        for i, functions in enumerate(functions_list):
-            print(f"{i + 1}. {functions}")
-        functions_choice = int(input("Enter your choice (e.g. 10): "))
-        if functions_choice <= 0 or functions_choice > 10:
-            print("Invalid choice!")
-            functions_fc()
-        else:
-            return functions == functions_list[functions_choice - 1]
-    except ValueError:
-        print("Invalid choice!")
-        functions_fc()
-
-
-# Support Codec - codec of product supported
-def codec_fc():
-    global codec
-    try:
-        print("Choose a codec from the following: ")
-        for i, codecs in enumerate(codec_list):
-            print(f"{i + 1}. {codecs}")
-        codec_choice = int(input("Enter your choice (e.g. 10): "))
-        if codec_choice <= 0 or codec_choice > 10:
-            print("Invalid choice!")
-            codec_fc()
-        else:
-            return codec == codec_list[codec_choice - 1]
-    except ValueError:
-        print("Invalid choice!")
-        codec_fc()
-
-
-# App support - choice on having app support or not
-def app_support_fc():
-    global app_support
-    try:
-        print("Would you like the headphone/earbud to include app support?")
-        for i, app_support in enumerate(app_support_list):
-            print(f"{i + 1}. {app_support}")
-        app_support_choice = int(input("Enter your choice (e.g. 1): "))
-        if app_support_choice <= 0 or app_support_choice > 3:
-            print("Invalid choice!")
-            app_support_fc()
-        else:
-            return app_support == app_support_list[app_support_choice - 1]
-    except ValueError:
-        print("Invalid choice!")
-        app_support_fc()
-
-
-# Battery Life - Battery life-long in hrs
-def battery_life_fc():
-    global battery
-    try:
-        print("Please choose battery life long (in Hrs): ")
-        for i, battery in enumerate(battery_list):
-            print(f"{i + 1}. {battery}")
-        battery_choice = int(input("Enter your choice (e.g. 1): "))
-        if battery_choice <= 0 or battery_choice > 5:
-            print("Invalid choice!")
-            battery_life_fc()
-        else:
-            return battery == battery_list[battery_choice - 1]
-    except ValueError:
-        print("Invalid choice!")
-        battery_life_fc()
-
-
-# Speciality - Special or Honours E.g. Best value
-'''def speciality_fc():
-    global speciality
-    speciality_choices = ["Value", "Cheapest", "Pricey", "Long Usage Hours", "Good Sounding (in price range)",
-                          "Best ANC", "Best Ambient", "Best Overall"]
-    return speciality == input("Enter speciality (" + ", ".join(speciality_choices) + "): ")'''
-
-
-# Recommend product to user by filtering preferences
-def recommendation():
-    # Get user preferences, call previous functions
-    category_fc()
-    price_range_fc()
-    brand_fc()
-    functions_fc()
-    codec_fc()
-    app_support_fc()
-    battery_life_fc()
-    # speciality_fc()
-
-    # Filter products based on user choices
-    filtered_products = []
-    for key, product_info in chosen_dict.items():
-        if (price_min <= product_info['price'] <= price_max) or (price_min == 0.00 and price_max == 0.00) and (
-                brand in product_info['brand']) or (brand == "N/A"):
-            if (functions in product_info['speciality']) or (functions == "N/A"):
-                if (codec in product_info['speciality']) or (codec == "N/A"):
-                    if (app_support == "N/A") or ((app_support == "iOS" and product_info['brand'] == "Apple") or (
-                            app_support == "Android" and product_info['brand'] != "Apple")):
-                        if (battery == "N/A") or (
-                                "battery" in product_info['speciality'] and battery.lower() in product_info[
-                            'speciality']):
-                            filtered_products.append(key)
-    print(filtered_products)
-
-
-'''    
-16-03
-if chosen_dict == headphone_dict:
-    category_name = "headphones"
-else:
-    category_name = "earbuds"
-    
-recommended_list = []
-
-for product, features in chosen_dict.items():
-    if price_min <= features['price'] <= price_max and (brand == "N/A" or features['brand'] == brand) and (codec == "N/A" or codec in features['speciality']):
-        if app_support != "N/A":
-            if app_support == "Yes":
-                if "app support" in features and features["app support"] == True:
-                    recommended_list.append(product)
-            elif app_support == "No":
-                if "app support" not in features or features["app support"] == False:
-                    recommended_list.append(product)
-        else:
-            recommended_list.append(product)
-
-if len(recommended_list) == 0:
-    return "No product found matching the criteria"
-else:
-    output = f"Recommended {category_name} within the price range ${price_min} to ${price_max} and with {brand} brand, {codec} codec support, {app_support} app support, {battery} battery life and {functions} functions: "
-    output += ", ".join(recommended_list)
-    return output
-
-if len(filtered_products) == 0:
-        print("No products found with the given preferences!")
-    else:
-        print("Here are the products that match your preferences:")
-        for product in filtered_products:
-            print(product)
-
-# Initialize list of recommendations
-    recommendations = []
-
-    # Loop through headphones and earbuds dictionaries to find matches
-    for product_dict in [headphone_dict, earbud_dict]:
-        for key, price in product_dict.items():
-            # Filter by price range
-            if price_min <= price <= price_max:
-                print(key)
-                recommendations.append(key)
-    return recommendations
-
-# Filter by brand
-                if brand.lower() in product.lower():
-                    # Filter by functions
-                    if all(f.lower() in product.lower() for f in functions):
-                        # Filter by codec support
-                        if ('AAC' in codec and 'AAC' in product_dict[product].get('codec', '')) or \
-                                ('SBC' in codec and 'SBC' in product_dict[product].get('codec', '')) or \
-                                ('LDAC' in codec and 'LDAC' in product_dict[product].get('codec', '')):
-                            recommendations.append(product)'''  # unused code
-
-recommendation()  # price_min, price_max, brand, functions, codec

@@ -69,6 +69,7 @@ battery_list = ["Less than 5 hours", "5-10 hours", "10-20 hours", "More than 20 
 # set initial values
 price_min = 0.00
 price_max = 0.00
+brand = "N/A"
 codec = "N/A"
 app_support = "N/A"
 battery = "N/A"
@@ -124,7 +125,6 @@ def price_range_fc():
 # Brand - brand of product
 def brand_fc():
     global brand
-    brand = "N/A"
     try:
         print("Choose a brand from the following: ")
         for i, n in enumerate(brand_list):
@@ -132,12 +132,14 @@ def brand_fc():
         brand_choice = int(input("Enter your choice (e.g. 16): "))
         if brand_choice <= 0 or brand_choice > 16:
             print("Invalid choice!")
+            # brand_choice = None
             brand_fc()
         else:
-            print(brand_choice)
-            return brand == brand_list[brand_choice - 1]
+            print(brand_list[brand_choice - 1])
+            return brand_list[brand_choice - 1]
     except ValueError:
         print("Invalid choice!")
+        # brand_choice = None
         brand_fc()
 
 
@@ -164,7 +166,7 @@ def functions_fc():
             print("Invalid choice!")
             functions_fc()
         else:
-            return functions == functions_list[functions_choice - 1]
+            return functions_list[functions_choice - 1]
     except ValueError:
         print("Invalid choice!")
         functions_fc()
@@ -182,7 +184,7 @@ def codec_fc():
             print("Invalid choice!")
             codec_fc()
         else:
-            return codec == codec_list[codec_choice - 1]
+            return codec_list[codec_choice - 1]
     except ValueError:
         print("Invalid choice!")
         codec_fc()
@@ -200,7 +202,7 @@ def app_support_fc():
             print("Invalid choice!")
             app_support_fc()
         else:
-            return app_support == app_support_list[app_support_choice - 1]
+            return app_support_list[app_support_choice - 1]
     except ValueError:
         print("Invalid choice!")
         app_support_fc()
@@ -218,7 +220,7 @@ def battery_life_fc():
             print("Invalid choice!")
             battery_life_fc()
         else:
-            return battery == battery_list[battery_choice - 1]
+            return battery_list[battery_choice - 1]
     except ValueError:
         print("Invalid choice!")
         battery_life_fc()
@@ -232,31 +234,43 @@ def battery_life_fc():
     return speciality == input("Enter speciality (" + ", ".join(speciality_choices) + "): ")'''
 
 
+
+
+
+# Get user preferences, call previous functions
+
+# speciality = speciality_fc()
+
 # Recommend product to user by filtering preferences
 def recommendation():
-    # Get user preferences, call previous functions
     category_fc()
     price_range_fc()
-    brand_fc()
-    # print(brand)
-    functions_fc()
-    codec_fc()
-    app_support_fc()
-    battery_life_fc()
-    # speciality_fc()
-    print(price_min, price_max, brand, functions, codec, app_support, battery)
+    brand = brand_fc()
+    print(brand)
+    functions = functions_fc()
+    codec = codec_fc()
+    app_support = app_support_fc()
+    battery = battery_life_fc()
+    # print(price_min, price_max, brand, functions, codec, app_support, battery)
     # Filter products based on user choices
     filtered_products = []
     for key, product_info in chosen_dict.items():
         if price_min <= product_info['price'] <= price_max:
-            if (brand in product_info['brand']) or (brand == "N/A"):
+            # print(brand)
+            # print((product_info['brand']))
+            # print((brand in product_info['brand']))
+            if (brand in product_info['brand'] is True) or (brand == "N/A"):
                 if (functions in product_info['speciality']) or (functions == "N/A"):
                     if (codec in product_info['speciality']) or (codec == "N/A"):
                         if (app_support == "N/A") or ((app_support == "iOS" and product_info['brand'] == "Apple") or (
                                 app_support == "Android" and product_info['brand'] != "Apple")):
                             if (battery == "N/A") or ("battery" in product_info['speciality'] and battery.lower() in product_info['speciality']):
                                 filtered_products.append(key)
-    print(filtered_products)
+    if bool(filtered_products) == 0:
+        print("Sorry, we dont have the product that meet your enquirement.")
+    else:
+        print("Here is the recommended products: "
+              f"{filtered_products}")
 
 
 recommendation()  # price_min, price_max, brand, functions, codec

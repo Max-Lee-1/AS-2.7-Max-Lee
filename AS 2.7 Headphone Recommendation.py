@@ -116,8 +116,10 @@ def price_range_fc():
                     print("Maximum price must be greater than $0.")
                 else:
                     n = 1
-        price_min = "{:.2f}".format(float(price_min))
-        price_max = "{:.2f}".format(float(price_max))
+        # price_min = "{:.2f}".format(float(price_min))
+        # price_max = "{:.2f}".format(float(price_max))
+        price_min = round((float(price_min)), ndigits=2)
+        price_max = round((float(price_max)), ndigits=2)
         return print(price_min, price_max, type(price_min), type(price_max))
     except ValueError:
         print("Invalid choice!")
@@ -253,17 +255,19 @@ def recommendation():
     codec_fc()
     app_support_fc()
     battery_life_fc()
-
-    formatted_value = "{:.2f}".format(chosen_dict["price"])
-    chosen_dict['price'] = formatted_value
     # print(price_min, price_max, brand, functions, codec, app_support, battery)
-
+    # print(price_min, price_max, type(price_min), type(price_max))
     # Filter products based on user choices
     for key, product_info in chosen_dict.items():
+        formatted_value = round((product_info['price']), ndigits=2)
+        print(formatted_value, type(formatted_value))
+        product_info['price'] = formatted_value
         # product_info['price'] = "{:.2f}".format(float(product_info['price']))
-        print(chosen_dict['price'], type(product_info['price']))
+        print(product_info['price'], type(product_info['price']))
         if price_min <= product_info['price'] <= price_max:
             print('True')
+            filtered_products.append(key)
+            print(filtered_products)
             # print(brand)
             # print((product_info['brand']))
             # print((brand in product_info['brand']))

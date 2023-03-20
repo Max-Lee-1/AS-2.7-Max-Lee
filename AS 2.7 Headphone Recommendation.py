@@ -83,13 +83,13 @@ def category_fc():
         category_choice = input("Which category are you looking for? (Enter 'headphone' or 'earbud' or 'both'): ")
         if category_choice.lower() == "headphone":
             chosen_dict = headphone_dict
-            return chosen_dict
+            return print(chosen_dict)
         elif category_choice.lower() == "earbud":
             chosen_dict = earbud_dict
-            return chosen_dict
+            return print(chosen_dict)
         elif category_choice.lower() == "both":
             chosen_dict = headphone_dict | earbud_dict
-            return chosen_dict
+            return print(chosen_dict)
         else:
             print("Invalid choice!")
             category_fc()
@@ -116,7 +116,9 @@ def price_range_fc():
                     print("Maximum price must be greater than $0.")
                 else:
                     n = 1
-        return
+        price_min = "{:.2f}".format(float(price_min))
+        price_max = "{:.2f}".format(float(price_max))
+        return print(price_min, price_max, type(price_min), type(price_max))
     except ValueError:
         print("Invalid choice!")
         price_range_fc()
@@ -135,7 +137,7 @@ def brand_fc():
             brand_fc()
         else:
             brand = brand_list[brand_choice - 1]
-            return brand
+            return print(brand)
     except ValueError:
         print("Invalid choice!")
         brand_fc()
@@ -251,10 +253,15 @@ def recommendation():
     codec_fc()
     app_support_fc()
     battery_life_fc()
+
+    formatted_value = "{:.2f}".format(chosen_dict["price"])
+    chosen_dict['price'] = formatted_value
     # print(price_min, price_max, brand, functions, codec, app_support, battery)
 
     # Filter products based on user choices
     for key, product_info in chosen_dict.items():
+        # product_info['price'] = "{:.2f}".format(float(product_info['price']))
+        print(chosen_dict['price'], type(product_info['price']))
         if price_min <= product_info['price'] <= price_max:
             print('True')
             # print(brand)
@@ -271,6 +278,8 @@ def recommendation():
                             if (battery == "N/A") or (battery.lower() in product_info['speciality'] is True):
                                 print('True')
                                 filtered_products.append(key)
+        else:
+            print("False")
     # if bool(filtered_products) == 0:
         # print("Sorry, we dont have the product that meet your enquirement.")
     # else:

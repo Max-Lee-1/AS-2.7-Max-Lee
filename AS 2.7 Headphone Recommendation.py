@@ -52,8 +52,8 @@ earbud_dict = {'Samsung Galaxy Buds 2': {'brand': 'Samsung', 'price': 279.00, 's
                'Sony WF-C500': {'brand': 'Sony', 'price': 115.00, 'speciality': 'best sounding cheapest'},
                }
 
-brand_list = ['Anker', "Apple", "Bang & Olufsen", "Beats", "Belkin", "Bose", "Bowers & Wilkins", "Edifier", "EPOS",
-              "Jabra", "Logitech", "Nothing", "Samsung", "Sennheiser", "Sony", "N/A"]
+brand_list = ['Anker', 'Apple', 'Bang & Olufsen', 'Beats', 'Belkin', 'Bose', 'Bowers & Wilkins', 'Edifier', 'EPOS',
+              'Jabra', 'Logitech', 'Nothing', 'Samsung', 'Sennheiser', 'Sony', 'N/A']
 
 functions_list = ["Active Noise Cancelling", "Ambient Sound", "Auto Pause/Play", "Low Latency",
                   "Passive Noise Cancelling", "Quick Charge", "Voice Call", "Water Resistence", "Wireless Charging",
@@ -83,13 +83,13 @@ def category_fc():
         category_choice = input("Which category are you looking for? (Enter 'headphone' or 'earbud' or 'both'): ")
         if category_choice.lower() == "headphone":
             chosen_dict = headphone_dict
-            return print(chosen_dict)
+            return  # print(chosen_dict)
         elif category_choice.lower() == "earbud":
             chosen_dict = earbud_dict
-            return print(chosen_dict)
+            return  # print(chosen_dict)
         elif category_choice.lower() == "both":
             chosen_dict = headphone_dict | earbud_dict
-            return print(chosen_dict)
+            return  # print(chosen_dict)
         else:
             print("Invalid choice!")
             category_fc()
@@ -116,11 +116,9 @@ def price_range_fc():
                     print("Maximum price must be greater than $0.")
                 else:
                     n = 1
-        # price_min = "{:.2f}".format(float(price_min))
-        # price_max = "{:.2f}".format(float(price_max))
         price_min = round((float(price_min)), ndigits=2)
         price_max = round((float(price_max)), ndigits=2)
-        return print(price_min, price_max, type(price_min), type(price_max))
+        return price_min, price_max
     except ValueError:
         print("Invalid choice!")
         price_range_fc()
@@ -260,26 +258,23 @@ def recommendation():
     # Filter products based on user choices
     for key, product_info in chosen_dict.items():
         formatted_value = round((product_info['price']), ndigits=2)
-        print(formatted_value, type(formatted_value))
         product_info['price'] = formatted_value
-        # product_info['price'] = "{:.2f}".format(float(product_info['price']))
-        print(product_info['price'], type(product_info['price']))
         if price_min <= product_info['price'] <= price_max:
             print('True')
-            filtered_products.append(key)
-            print(filtered_products)
+            print(brand, type(brand))
             # print(brand)
             # print((product_info['brand']))
             # print((brand in product_info['brand']))
-            if (brand in product_info['brand'] is True) or (brand == "N/A"):
+            if (brand in product_info['brand']) or (brand == "N/A"):
                 print('True')
-                if (functions in product_info['speciality'] is True) or (functions == "N/A"):
+                filtered_products.append(key)
+                if (functions in product_info['speciality']) or (functions == "N/A"):
                     print('True')
-                    if (codec in product_info['speciality'] is True) or (codec == "N/A"):
+                    if (codec in product_info['speciality']) or (codec == "N/A"):
                         print('True')
-                        if (app_support == "N/A") or (app_support in product_info['app_support'] is True):
+                        if (app_support == "N/A") or (app_support in product_info['app_support']):
                             print('True')
-                            if (battery == "N/A") or (battery.lower() in product_info['speciality'] is True):
+                            if (battery == "N/A") or (battery.lower() in product_info['speciality']):
                                 print('True')
                                 filtered_products.append(key)
         else:

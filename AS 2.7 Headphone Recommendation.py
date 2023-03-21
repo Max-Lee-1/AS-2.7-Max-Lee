@@ -15,42 +15,144 @@
 # dictionary for options - includes price, brand, functions, Bluetooth Codec, App support, Battery Life and Speciality
 # need to add the options one by one
 headphone_dict = {
-    'Sony WH-1000XM5': {'brand': 'Sony', 'price': 595.00, 'functions': 'Active Noise Cancelling, Ambient Sound',
-                        'speciality': 'best all rounded, best ANC, comfortable'},
-    'Apple Airpods Max': {'brand': 'Apple', 'price': 999.00,
-                          'speciality': 'best iphone, 2nd most expensive, 2nd best for workout'},
-    'Sony WH-1000XM4': {'brand': 'Sony', 'price': 414.00,
-                        'speciality': 'best sounding bass, best for workout, Best Bluetooth codec support'},
-    'Bose Noise Cancelling Headphones 700': {'brand': 'Bose', 'price': 699.95, 'speciality': 'best phone call'},
-    'Logitech G435 LIGHTSPEED Wireless': {'brand': 'Logitech', 'price': 249.90, 'speciality': 'best budget gaming'},
-    'Bowers & Wilkins Px7 S2 Headphones': {'brand': 'Bowers & Wilkins', 'price': 649.00,
-                                           'speciality': 'best look, most comfort, 3rd best Bluetooth codec support'},
-    'Sennheiser Momentum 4 Wireless': {'brand': 'Sennheiser', 'price': 599.95,
-                                       'speciality': '2nd best sounding bass, 2nd best Bluetooth codec support'},
-    'Belkin Soundform Mini': {'brand': 'Belkin', 'price': 59.99, 'speciality': 'best for kids'},
-    'Anker SoundCore Life Q30': {'brand': 'Anker', 'price': 241.95, 'speciality': 'best value'},
-    'Edifier W820NB': {'brand': 'Edifier', 'price': 168.00, 'speciality': 'best sounding cheapest'},
-    }
+    'Sony WH-1000XM5': {'brand': 'Sony',
+                        'price': 349.99,
+                        'functions': 'Active Noise Cancelling, Ambient Sound, Voice Assistant',
+                        'codecs': 'LDAC, aptX, AAC',
+                        'app support': 'Yes',
+                        'battery life': 'up to 30 hours'},
+    'Apple Airpods Max': {'brand': 'Apple',
+                          'price': 549.00,
+                          'functions': 'Active Noise Cancelling, Transparency mode',
+                          'codecs': 'AAC',
+                          'app support': 'No',
+                          'battery life': 'up to 20 hours'},
+    'Sony WH-1000XM4': {'brand': 'Sony',
+                        'price': 279.99,
+                        'functions': 'Active Noise Cancelling, Ambient Sound, Voice Assistant',
+                        'codecs': 'LDAC, aptX, AAC',
+                        'app support': 'Yes',
+                        'battery life': 'up to 30 hours'},
+    'Bose Noise Cancelling Headphones 700': {'brand': 'Bose',
+                                             'price': 379.00,
+                                             'functions': 'Active Noise Cancelling, Voice Assistant',
+                                             'codecs': 'SBC, AAC',
+                                             'app support': 'Yes',
+                                             'battery life': 'up to 20 hours'},
+    'Logitech G435 LIGHTSPEED Wireless': {'brand': 'Logitech',
+                                          'price': 79.99,
+                                          'functions': 'Gaming',
+                                          'codecs': 'SBC, AAC',
+                                          'app support': 'No',
+                                          'battery life': 'up to 18 hours'},
+    'Bowers & Wilkins Px7 S2 Headphones': {'brand': 'Bowers & Wilkins',
+                                           'price': 399.99,
+                                           'functions': 'Active Noise Cancelling, Ambient Sound',
+                                           'codecs': 'aptX Adaptive, aptX HD, AAC, SBC',
+                                           'app support': 'Yes',
+                                           'battery life': 'up to 30 hours'},
+    'Sennheiser Momentum 4 Wireless': {'brand': 'Sennheiser',
+                                       'price': 379.95,
+                                       'functions': 'Active Noise Cancelling, Transparent Hearing, Voice Assistant',
+                                       'codecs': 'SBC, AAC, aptX, aptX Low Latency, LHDC',
+                                       'app support': 'Yes',
+                                       'battery life': 'up to 17 hours'},
+    'Belkin Soundform Mini': {'brand': 'Belkin',
+                              'price': 39.99,
+                              'functions': 'Wireless, Voice Assistant',
+                              'codecs': 'SBC, AAC',
+                              'app support': 'Yes',
+                              'battery life': 'up to 15 hours'},
+    'Anker SoundCore Life Q30': {'brand': 'Anker',
+                                 'price': 79.99,
+                                 'functions': 'Active Noise Cancelling, Voice Assistant',
+                                 'codecs': 'SBC, AAC',
+                                 'app support': 'No',
+                                 'battery life': 'up to 40 hours'},
+    'Edifier W820NB': {'brand': 'Edifier',
+                       'price': 79.99,
+                       'functions': 'Active Noise Cancelling, Voice Assistant',
+                       'codecs': 'SBC, AAC',
+                       'app support': 'Yes',
+                       'battery life': 'up to 25 hours'},
+}
 
-earbud_dict = {'Samsung Galaxy Buds 2': {'brand': 'Samsung', 'price': 279.00, 'speciality': 'best all rounded'},
-               'Apple Airpods Pro (Gen 2)': {'brand': 'Apple', 'price': 479.00,
-                                             'speciality': 'best iphone, best sounding upper-mid range price, expensive'},
-               'Beats Fit Pro': {'brand': 'Beats', 'price': 349.95, 'speciality': 'best workout'},
-               'Sony WF-1000XM4': {'brand': 'Sony', 'price': 369.00,
-                                   'speciality': 'best ANC (Active Noise Cancelling), 2nd best Bluetooth codec support'},
-               'Jabra Elite 7 Active': {'brand': 'Jabra', 'price': 284.00, 'speciality': 'best versatility'},
-               'Jabra Elite 7 Pro': {'brand': 'Jabra', 'price': 296.00,
-                                     'speciality': 'best sounding in lower-mid range price'},
-               'EPOS GTW 270 Hybrid': {'brand': 'EPOS', 'price': 239.00, 'speciality': 'best gaming'},
-               'Nothing Ear 1': {'brand': 'Nothing', 'price': 189.00, 'speciality': 'best looking'},
-               'Sennheiser Momentum TW 3': {'brand': 'Sennheiser', 'price': 378.00, 'speciality': 'best sounding bass'},
-               'Earfun Air Pro 3': {'brand': 'Earfun', 'price': 139.00,
-                                    'speciality': 'best value, good-looking, all rounded'},
-               'Bang & Olufsen Beoplay EX': {'brand': 'Bang & Olufsen', 'price': 775.00,
+earbud_dict = {'Samsung Galaxy Buds 2': {'brand': 'Samsung',
+                                         'price': 149.99,
+                                         'functions': '',
+                                         'speciality': 'best all rounded',
+                                         'codecs': ['SBC', 'AAC', 'Samsung Scalable'],
+                                         'app support': 'Yes',
+                                         'battery life': '5 hours (buds), 20 hours (case)'},
+               'Apple Airpods Pro (Gen 2)': {'brand': 'Apple',
+                                             'price': 249.00,
+                                             'functions': '',
+                                             'speciality': 'best iPhone, best sounding upper-mid range price, expensive',
+                                             'codecs': 'AAC',
+                                             'app support': 'Yes',
+                                             'battery life': '4.5 hours (buds), 24 hours (case)'},
+               'Beats Fit Pro': {'brand': 'Beats',
+                                 'price': 149.99,
+                                 'functions': '',
+                                 'speciality': 'best workout',
+                                 'codecs': ['AAC', 'SBC'],
+                                 'app support': 'Beats app',
+                                 'battery life': '7 hours (buds), 18 hours (case)'},
+               'Sony WF-1000XM4': {'brand': 'Sony',
+                                   'price': 279.99,
+                                   'functions': '',
+                                   'speciality': 'best ANC (Active Noise Cancelling), 2nd best Bluetooth codec support',
+                                   'codecs': ['SBC', 'AAC', 'LDAC'],
+                                   'app support': 'Sony Headphones Connect app',
+                                   'battery life': '8 hours (buds), 24 hours (case)'},
+               'Jabra Elite 7 Active': {'brand': 'Jabra',
+                                        'price': 179.99,
+                                        'functions': '',
+                                        'speciality': 'best versatility',
+                                        'codecs': ['SBC', 'AAC'],
+                                        'app support': 'Jabra app',
+                                        'battery life': '9 hours (buds), 35 hours (case)'},
+               'Jabra Elite 7 Pro': {'brand': 'Jabra',
+                                     'price': 199.99,
+                                     'functions': '',
+                                     'speciality': 'best sounding in lower-mid range price',
+                                     'codecs': ['SBC', 'AAC'],
+                                     'app support': 'Jabra app',
+                                     'battery life': '9 hours (buds), 35 hours (case)'},
+               'EPOS GTW 270 Hybrid': {'brand': 'EPOS',
+                                       'price': 199.00,
+                                       'functions': '',
+                                       'speciality': 'best gaming',
+                                       'codecs': ['SBC', 'AAC', 'aptX Low Latency'],
+                                       'app support': 'EPOS Gaming Suite app',
+                                       'battery life': '5 hours (buds), 20 hours (case)'},
+               'Nothing Ear 1': {'brand': 'Nothing',
+                                 'price': 99.99, 'speciality': 'best for design',
+                                 'functions': 'Bluetooth 5.2, wireless charging, IPX4 water resistance, touch controls, transparent design',
+                                 'codecs': ['AAC, SBC'],
+                                 'app support': 'Yes',
+                                 'battery life': ''},
+               'Sennheiser Momentum TW 3': {'brand': 'Sennheiser', 'price': 199.95,
+                                            'speciality': 'best for bass lovers',
+                                            'functions': 'Bluetooth 5.2, wireless charging, IPX4 water resistance, touch controls, equalizer customization',
+                                            'codecs': ['AAC', 'aptX', 'SBC']},
+               'Earfun Air Pro 3': {'brand': 'Earfun',
+                                    'price': 79.99,
+                                    'speciality': 'best value for money, good all-rounder',
+                                    'functions': 'Bluetooth 5.2, wireless charging, IPX5 water resistance, touch controls, ANC',
+                                    'codecs': 'AAC, SBC'},
+               'Bang & Olufsen Beoplay EX': {'brand': 'Bang & Olufsen',
+                                             'price': 775.00,
                                              'speciality': 'Most expensive, great-looking, nice sound'},
-               'Jabra Elite 85t': {'brand': 'Jabra', 'price': 199.95, 'speciality': 'best Bluetooth codec support'},
-               'Sony WF-C500': {'brand': 'Sony', 'price': 115.00, 'speciality': 'best sounding cheapest'},
+               'Jabra Elite 85t': {'brand': 'Jabra',
+                                   'price': 199.95,
+                                   'speciality': 'best Bluetooth codec support'},
+               'Sony WF-C500': {'brand': 'Sony',
+                                'price': 115.00,
+                                'speciality': 'best sounding cheapest'},
                }
+
+# Note: price and features of the headphones are subject to change over time, so the above information might not
 
 brand_list = ['Anker', 'Apple', 'Bang & Olufsen', 'Beats', 'Belkin', 'Bose', 'Bowers & Wilkins', 'Edifier', 'EPOS',
               'Jabra', 'Logitech', 'Nothing', 'Samsung', 'Sennheiser', 'Sony', 'N/A']
@@ -64,7 +166,6 @@ codec_list = ["AAC", "aptX", "aptX Low Latency", "aptX Adaptive", "aptX HD", "LC
 app_support_list = ["Yes", "No", "N/A"]
 
 battery_list = ["Less than 5 hours", "5-10 hours", "10-20 hours", "More than 20 hours", "N/A"]
-
 
 # set initial values
 price_min = 0.00
@@ -268,19 +369,19 @@ def recommendation():
             if (brand in product_info['brand']) or (brand == "N/A"):
                 print('True')
                 filtered_products.append(key)
-                if (functions in product_info['speciality']) or (functions == "N/A"):
+                if (functions in product_info['functions']) or (functions == "N/A"):
                     print('True')
-                    if (codec in product_info['speciality']) or (codec == "N/A"):
+                    if (codec in product_info['codecs']) or (codec == "N/A"):
                         print('True')
-                        if (app_support == "N/A") or (app_support in product_info['app_support']):
+                        if (app_support == "N/A") or (app_support in product_info['app support']):
                             print('True')
-                            if (battery == "N/A") or (battery.lower() in product_info['speciality']):
+                            if (battery == "N/A") or (battery.lower() in product_info['battery life']):
                                 print('True')
                                 filtered_products.append(key)
         else:
             print("False")
     # if bool(filtered_products) == 0:
-        # print("Sorry, we dont have the product that meet your enquirement.")
+    # print("Sorry, we dont have the product that meet your enquirement.")
     # else:
     print("Here is the recommended products: "
           f"{filtered_products}")
@@ -288,8 +389,69 @@ def recommendation():
 
 recommendation()  # price_min, price_max, brand, functions, codec
 
+'''   
+21-03
+earbud_dict = {'Samsung Galaxy Buds 2': {'brand': 'Samsung', 'price': 149.99, 'speciality': 'best all rounded',
+'codecs': ['SBC', 'AAC', 'Samsung Scalable'], 'app support': 'Galaxy Wearable app',
+'battery life': '5 hours (buds), 20 hours (case)'},
+'Apple Airpods Pro (Gen 2)': {'brand': 'Apple', 'price': 249.00,
+'speciality': 'best iPhone, best sounding upper-mid range price, expensive',
+'codecs': ['AAC'], 'app support': 'Apple Airpods app',
+'battery life': '4.5 hours (buds), 24 hours (case)'},
+'Beats Fit Pro': {'brand': 'Beats', 'price': 149.99, 'speciality': 'best workout',
+'codecs': ['AAC', 'SBC'], 'app support': 'Beats app',
+'battery life': '7 hours (buds), 18 hours (case)'},
+'Sony WF-1000XM4': {'brand': 'Sony', 'price': 279.99,
+'speciality': 'best ANC (Active Noise Cancelling), 2nd best Bluetooth codec support',
+'codecs': ['SBC', 'AAC', 'LDAC'], 'app support': 'Sony Headphones Connect app',
+'battery life': '8 hours (buds), 24 hours (case)'},
+'Jabra Elite 7 Active': {'brand': 'Jabra', 'price': 179.99, 'speciality': 'best versatility',
+'codecs': ['SBC', 'AAC'], 'app support': 'Jabra app',
+'battery life': '9 hours (buds), 35 hours (case)'},
+'Jabra Elite 7 Pro': {'brand': 'Jabra', 'price': 199.99,
+'speciality': 'best sounding in lower-mid range price',
+'codecs': ['SBC', 'AAC'], 'app support': 'Jabra app',
+'battery life': '9 hours (buds), 35 hours (case)'},
+'EPOS GTW 270 Hybrid': {'brand': 'EPOS', 'price': 199.00, 'speciality': 'best gaming',
+'codecs': ['SBC', 'AAC', 'aptX Low Latency'], 'app support': 'EPOS Gaming Suite app',
+'battery life': '5 hours (buds), 20 hours (case)'},
+'Nothing Ear 1': {'brand': 'Nothing', 'price': 99.99, 'speciality': 'best for design',
+'functions': 'Bluetooth 5.2, wireless charging, IPX4 water resistance, touch controls, transparent design',
+'codecs': 'AAC, SBC'},
+'Sennheiser Momentum TW 3': {'brand': 'Sennheiser', 'price': 199.95, 'speciality': 'best for bass lovers',
+'functions': 'Bluetooth 5.2, wireless charging, IPX4 water resistance, touch controls, equalizer customization',
+'codecs': 'AAC, aptX, SBC'},
+'Earfun Air Pro 3': {'brand': 'Earfun', 'price': 79.99,
+'speciality': 'best value for money, good all-rounder',
+'functions': 'Bluetooth 5.2, wireless charging, IPX5 water resistance, touch controls, ANC',
+'codecs': 'AAC, SBC'},
+'Bang & Ol
 
-'''    
+
+headphone_dict = {
+'Sony WH-1000XM5': {'brand': 'Sony', 'price': 595.00, 'functions': 'Active Noise Cancelling, Ambient Sound',
+'speciality': 'best all rounded, best ANC, comfortable', 'codec': 'LDAC, AAC, SBC',
+'app support': 'Sony Headphones Connect', 'battery life': '30 hours'},
+'Apple Airpods Max': {'brand': 'Apple', 'price': 999.00,
+'speciality': 'best iphone, 2nd most expensive, 2nd best for workout', 'codec': 'AAC, SBC',
+'app support': 'Apple Music, Find My', 'battery life': '20 hours'},
+'Sony WH-1000XM4': {'brand': 'Sony', 'price': 414.00,
+'speciality': 'best sounding bass, best for workout, Best Bluetooth codec support',
+'codec': 'LDAC, AAC, SBC', 'app support': 'Sony Headphones Connect', 'battery life': '30 hours'},
+'Bose Noise Cancelling Headphones 700': {'brand': 'Bose', 'price': 699.95, 'speciality': 'best phone call',
+'codec': 'AAC, SBC', 'app support': 'Bose Music', 'battery life': '20 hours'},
+'Logitech G435 LIGHTSPEED Wireless': {'brand': 'Logitech', 'price': 249.90, 'speciality': 'best budget gaming',
+'codec': 'SBC', 'app support': 'Logitech G HUB', 'battery life': '18 hours'},
+'Bowers & Wilkins Px7 S2 Headphones': {'brand': 'Bowers & Wilkins', 'price': 649.00,
+'speciality': 'best look, most comfort, 3rd best Bluetooth codec support',
+'codec': 'aptX Adaptive, aptX HD, aptX Classic, AAC, SBC',
+'app support': 'Bowers & Wilkins Headphones app', 'battery life': '30 hours'},
+'Sennheiser Momentum 4 Wireless': {'brand': 'Sennheiser', 'price': 599.95,
+'speciality': '2nd best sounding bass, 2nd best Bluetooth codec support',
+'codec': 'AAC, aptX
+
+
+ 
 16-03
 if chosen_dict == headphone_dict:
     category_name = "headphones"
@@ -346,6 +508,45 @@ if len(filtered_products) == 0:
                                 ('LDAC' in codec and 'LDAC' in product_dict[product].get('codec', '')):
                             recommendations.append(product)'''  # unused code
 '''
+21-03
+headphone_dict = {
+    'Sony WH-1000XM5': {'brand': 'Sony', 'price': 595.00, 'functions': 'Active Noise Cancelling, Ambient Sound',
+                        'speciality': 'best all rounded, best ANC, comfortable'},
+    'Apple Airpods Max': {'brand': 'Apple', 'price': 999.00,
+                          'speciality': 'best iphone, 2nd most expensive, 2nd best for workout'},
+    'Sony WH-1000XM4': {'brand': 'Sony', 'price': 414.00,
+                        'speciality': 'best sounding bass, best for workout, Best Bluetooth codec support'},
+    'Bose Noise Cancelling Headphones 700': {'brand': 'Bose', 'price': 699.95, 'speciality': 'best phone call'},
+    'Logitech G435 LIGHTSPEED Wireless': {'brand': 'Logitech', 'price': 249.90, 'speciality': 'best budget gaming'},
+    'Bowers & Wilkins Px7 S2 Headphones': {'brand': 'Bowers & Wilkins', 'price': 649.00,
+                                           'speciality': 'best look, most comfort, 3rd best Bluetooth codec support'},
+    'Sennheiser Momentum 4 Wireless': {'brand': 'Sennheiser', 'price': 599.95,
+                                       'speciality': '2nd best sounding bass, 2nd best Bluetooth codec support'},
+    'Belkin Soundform Mini': {'brand': 'Belkin', 'price': 59.99, 'speciality': 'best for kids'},
+    'Anker SoundCore Life Q30': {'brand': 'Anker', 'price': 241.95, 'speciality': 'best value'},
+    'Edifier W820NB': {'brand': 'Edifier', 'price': 168.00, 'speciality': 'best sounding cheapest'},
+    }
+
+earbud_dict = {'Samsung Galaxy Buds 2': {'brand': 'Samsung', 'price': 279.00, 'speciality': 'best all rounded'},
+               'Apple Airpods Pro (Gen 2)': {'brand': 'Apple', 'price': 479.00,
+                                             'speciality': 'best iphone, best sounding upper-mid range price, expensive'},
+               'Beats Fit Pro': {'brand': 'Beats', 'price': 349.95, 'speciality': 'best workout'},
+               'Sony WF-1000XM4': {'brand': 'Sony', 'price': 369.00,
+                                   'speciality': 'best ANC (Active Noise Cancelling), 2nd best Bluetooth codec support'},
+               'Jabra Elite 7 Active': {'brand': 'Jabra', 'price': 284.00, 'speciality': 'best versatility'},
+               'Jabra Elite 7 Pro': {'brand': 'Jabra', 'price': 296.00,
+                                     'speciality': 'best sounding in lower-mid range price'},
+               'EPOS GTW 270 Hybrid': {'brand': 'EPOS', 'price': 239.00, 'speciality': 'best gaming'},
+               'Nothing Ear 1': {'brand': 'Nothing', 'price': 189.00, 'speciality': 'best looking'},
+               'Sennheiser Momentum TW 3': {'brand': 'Sennheiser', 'price': 378.00, 'speciality': 'best sounding bass'},
+               'Earfun Air Pro 3': {'brand': 'Earfun', 'price': 139.00,
+                                    'speciality': 'best value, good-looking, all rounded'},
+               'Bang & Olufsen Beoplay EX': {'brand': 'Bang & Olufsen', 'price': 775.00,
+                                             'speciality': 'Most expensive, great-looking, nice sound'},
+               'Jabra Elite 85t': {'brand': 'Jabra', 'price': 199.95, 'speciality': 'best Bluetooth codec support'},
+               'Sony WF-C500': {'brand': 'Sony', 'price': 115.00, 'speciality': 'best sounding cheapest'},
+               }
+
 16-03
 headphone_list = [    ['Sony WH-1000XM5', 'Sony', 595.00, 'best all rounded, best ANC, comfortable'],
     ['Apple Airpods Max', 'Apple', 999.00, 'best iphone, 2nd most expensive, 2nd best for workout'],

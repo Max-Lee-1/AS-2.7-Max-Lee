@@ -1,3 +1,13 @@
+# this is not the assessment -
+# to see AS 2.7, please go to AS_2.7_Headphone_Recommendation.py
+
+
+
+
+
+
+
+
 import array as arr
 
 a_list = [1, 2, 3, "4"]

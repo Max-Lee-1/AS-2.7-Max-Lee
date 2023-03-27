@@ -1,3 +1,4 @@
+
 ''' Headphone/Earbuds recommendation program
     users have to fill in requirements to narrow result
     Two categories of True Wireless(TW): TW Headphones & TW Earbuds (use collections)
@@ -14,77 +15,74 @@
 
 # dictionary for options - includes price, brand, functions, Bluetooth Codec, App support, Battery Life and Speciality
 # need to add the options one by one
+# Pricing on 22 Mar 2023
+# headphone: wireless, over-ear
 headphone_dict = {
-    'Sony WH-1000XM5': {'brand': 'Sony',
-                        'price': 539.99,
-                        'functions': 'Active Noise Cancelling, Ambient Sound, Voice Assistant',
-                        'codecs': 'LDAC, aptX, AAC',
-                        'app support': 'Yes',
-                        'battery life': 'More than 20 hours'},
+    'Anker SoundCore Life Q30': {'brand': ['Anker','Soundcore'],
+                                 'price': 159.99,
+                                 'functions': 'Active Noise Cancelling, Voice Assistant, Passive Noise Cancelling',
+                                 'codecs': 'SBC, AAC',
+                                 'app support': 'No',
+                                 'battery life': 'More than 20 hours'},
     'Apple Airpods Max': {'brand': 'Apple',
-                          'price': 899.00,
+                          'price': 999.00,
                           'functions': 'Active Noise Cancelling, Transparency mode',
                           'codecs': 'AAC',
                           'app support': 'No',
                           'battery life': '10-20 hours'},
-    'Sony WH-1000XM4': {'brand': 'Sony',
-                        'price': 429.99,
-                        'functions': 'Active Noise Cancelling, Ambient Sound, Voice Assistant',
-                        'codecs': 'LDAC, aptX, AAC',
-                        'app support': 'Yes',
-                        'battery life': 'More than 20 hours'},
-    'Bose Noise Cancelling Headphones 700': {'brand': 'Bose',
-                                             'price': 679.00,
-                                             'functions': 'Active Noise Cancelling, Voice Assistant',
-                                             'codecs': 'SBC, AAC',
-                                             'app support': 'Yes',
-                                             'battery life': '10-20 hours'},
-    'Logitech G435 LIGHTSPEED Wireless': {'brand': 'Logitech',
-                                          'price': 159.99,
-                                          'functions': 'Gaming',
-                                          'codecs': 'SBC, AAC',
-                                          'app support': 'No',
-                                          'battery life': '10-20 hours'},
-    'Bowers & Wilkins Px7 S2 Headphones': {'brand': 'Bowers & Wilkins',
-                                           'price': 749.99,
-                                           'functions': 'Active Noise Cancelling, Ambient Sound',
-                                           'codecs': 'aptX Adaptive, aptX HD, AAC, SBC',
-                                           'app support': 'Yes',
-                                           'battery life': 'More than 20 hours'},
-    'Sennheiser Momentum 4 Wireless': {'brand': 'Sennheiser',
-                                       'price': 679.95,
-                                       'functions': 'Active Noise Cancelling, Transparent Hearing, Voice Assistant',
-                                       'codecs': 'SBC, AAC, aptX, aptX Low Latency, LHDC',
-                                       'app support': 'Yes',
-                                       'battery life': '10-20 hours'},
     'Belkin Soundform Mini': {'brand': 'Belkin',
                               'price': 99.99,
                               'functions': 'Wireless, Voice Assistant',
                               'codecs': 'SBC, AAC',
                               'app support': 'Yes',
-                              'battery life': '10-20 hours'},
-    'Anker SoundCore Life Q30': {'brand': 'Anker',
-                                 'price': 159.99,
-                                 'functions': 'Active Noise Cancelling, Voice Assistant',
-                                 'codecs': 'SBC, AAC',
-                                 'app support': 'No',
-                                 'battery life': 'More than 20 hours'},
+                              'battery life': 'More than 30 hours'},
+    'Bose Noise Cancelling Headphones 700': {'brand': 'Bose',
+                                             'price': 599.95,
+                                             'functions': 'Active Noise Cancelling, Voice Assistant',
+                                             'codecs': 'SBC, AAC',
+                                             'app support': 'Yes',
+                                             'battery life': '10-20 hours'},
+    'Bowers & Wilkins Px7 S2 Headphones': {'brand': 'Bowers & Wilkins',
+                                           'price': 899.00,
+                                           'functions': 'Active Noise Cancelling, Ambient Sound',
+                                           'codecs': 'aptX Adaptive, aptX HD, aptX, AAC, SBC',
+                                           'app support': 'Yes',
+                                           'battery life': 'More than 20 hours'},
     'Edifier W820NB': {'brand': 'Edifier',
                        'price': 159.99,
                        'functions': 'Active Noise Cancelling, Voice Assistant',
                        'codecs': 'SBC, AAC',
                        'app support': 'Yes',
                        'battery life': 'More than 20 hours'},
+    'Logitech G435 LIGHTSPEED Wireless': {'brand': 'Logitech',
+                                          'price': 249.90,
+                                          'functions': 'Gaming',
+                                          'speciality': 'best for gaming',
+                                          'codecs': 'SBC, AAC',
+                                          'app support': 'No',
+                                          'battery life': '10-20 hours'},
+    'Sennheiser Momentum 4 Wireless': {'brand': 'Sennheiser',
+                                       'price': 679.95,
+                                       'functions': 'Active Noise Cancelling, Transparent Hearing, Voice Assistant',
+                                       'codecs': 'SBC, AAC, aptX, aptX Low Latency, LHDC',
+                                       'app support': 'Yes',
+                                       'battery life': '10-20 hours'},
+    'Sony WH-1000XM4': {'brand': 'Sony',
+                        'price': 414.00,
+                        'functions': 'Active Noise Cancelling, Ambient Sound, Voice Assistant',
+                        'codecs': 'LDAC, SBC, AAC',
+                        'app support': 'Yes',
+                        'battery life': 'More than 20 hours'},
+    'Sony WH-1000XM5': {'brand': 'Sony',
+                        'price': 537.99,
+                        'functions': 'Active Noise Cancelling, Ambient Sound, Voice Assistant',
+                        'codecs': 'LDAC, SBC, AAC',
+                        'app support': 'Yes',
+                        'battery life': 'More than 20 hours'},
 }
 
+# earbuds: wireless buds
 earbud_dict = {
-    'Samsung Galaxy Buds 2': {'brand': 'Samsung',
-                              'price': 179.00,
-                              'functions': 'Bluetooth 5.2, wireless charging, touch controls, water resistance (IPX7), active noise cancelling, ambient mode',
-                              'speciality': 'best all-rounded, affordable',
-                              'codecs': ['SBC', 'AAC', 'Samsung Scalable'],
-                              'app support': 'Yes, Samsung Wearables app',
-                              'battery life': '7.5 hours (buds), 29 hours (case)'},
     'Apple Airpods Pro (Gen 2)': {'brand': 'Apple',
                                   'price': 379.00,
                                   'functions': 'Bluetooth 5.0, wireless charging, touch controls, water resistance (IPX4), active noise cancelling, spatial audio',
@@ -92,6 +90,13 @@ earbud_dict = {
                                   'codecs': 'AAC',
                                   'app support': 'Yes, Apple AirPods app',
                                   'battery life': '4.5 hours (buds), 24 hours (case)'},
+    'Bang & Olufsen Beoplay EX': {'brand': 'Bang & Olufsen',
+                                  'price': 775.00,
+                                  'speciality': 'Most expensive, great-looking, nice sound',
+                                  'functions': 'Bluetooth 5.2, wireless charging, IPX4 water resistance, touch controls, active noise cancellation',
+                                  'codecs': ['AAC', 'aptX Adaptive', 'SBC'],
+                                  'app support': 'Bang & Olufsen app',
+                                  'battery life': '7.5 hours (buds), 20 hours (case)'},
     'Beats Fit Pro': {'brand': 'Beats',
                       'price': 199.95,
                       'functions': 'Bluetooth 5.0, wireless charging, touch controls, water resistance (IPX7), active noise cancelling, transparency mode, automatic pause and play',
@@ -99,13 +104,20 @@ earbud_dict = {
                       'codecs': ['AAC', 'SBC'],
                       'app support': 'Yes, Beats app',
                       'battery life': '9 hours (buds), 24 hours (case)'},
-    'Sony WF-1000XM4': {'brand': 'Sony',
-                        'price': 449.95,
-                        'functions': 'Bluetooth 5.2, wireless charging, touch controls, water resistance (IPX4), active noise cancelling, speak-to-chat, 360 Reality Audio',
-                        'speciality': 'best ANC (Active Noise Cancelling), 2nd best Bluetooth codec support',
-                        'codecs': ['SBC', 'AAC', 'LDAC'],
-                        'app support': 'Yes, Sony Headphones Connect app',
-                        'battery life': '8 hours (buds), 24 hours (case)'},
+    'Earfun Air Pro 3': {'brand': 'Earfun',
+                         'price': 79.99,
+                         'speciality': 'best value for money, good all-rounder',
+                         'functions': 'Bluetooth 5.2, wireless charging, IPX5 water resistance, touch controls, ANC',
+                         'codecs': ['AAC', 'SBC'],
+                         'app support': 'EarFun app',
+                         'battery life': '7 hours (buds), 25 hours (case)'},
+    'EPOS GTW 270 Hybrid': {'brand': 'EPOS',
+                            'price': 329.00,
+                            'functions': 'Bluetooth 5.1, aptX Low Latency, touch controls, water resistance (IPX5)',
+                            'speciality': 'best',
+                            'codecs': ['AAC', 'aptX', 'SBC'],
+                            'app support': '',
+                            'battery life': ''},
     'Jabra Elite 7 Active': {'brand': 'Jabra',
                              'price': 279.99,
                              'functions': 'Bluetooth 5.2, wireless charging, touch controls, water resistance (IP57), active noise cancelling, transparency mode, adjustable EQ',
@@ -120,42 +132,6 @@ earbud_dict = {
                           'codecs': ['SBC', 'AAC'],
                           'app support': 'Yes, Jabra app',
                           'battery life': '9 hours (buds), 35 hours (case)'},
-    'EPOS GTW 270 Hybrid': {'brand': 'EPOS',
-                            'price': 329.00,
-                            'functions': 'Bluetooth 5.1, aptX Low Latency, touch controls, water resistance (IPX5)',
-                            'speciality': 'best',
-                            'codecs': ['AAC', 'aptX', 'SBC'],
-                            'app support': '',
-                            'battery life': ''},
-
-    'Nothing Ear 1': {'brand': 'Nothing',
-                      'price': 99.99,
-                      'speciality': 'best for design',
-                      'functions': 'Bluetooth 5.2, wireless charging, IPX4 water resistance, touch controls, transparent design',
-                      'codecs': ['AAC', 'SBC'],
-                      'app support': 'Yes',
-                      'battery life': '5.7 hours (buds), 34 hours (case)'},
-    'Sennheiser Momentum TW 3': {'brand': 'Sennheiser',
-                                 'price': 199.95,
-                                 'speciality': 'best for bass lovers',
-                                 'functions': 'Bluetooth 5.2, wireless charging, IPX4 water resistance, touch controls, equalizer customization',
-                                 'codecs': ['AAC', 'aptX', 'SBC'],
-                                 'app support': 'Sennheiser Smart Control app',
-                                 'battery life': '7 hours (buds), 28 hours (case)'},
-    'Earfun Air Pro 3': {'brand': 'Earfun',
-                         'price': 79.99,
-                         'speciality': 'best value for money, good all-rounder',
-                         'functions': 'Bluetooth 5.2, wireless charging, IPX5 water resistance, touch controls, ANC',
-                         'codecs': ['AAC', 'SBC'],
-                         'app support': 'EarFun app',
-                         'battery life': '7 hours (buds), 25 hours (case)'},
-    'Bang & Olufsen Beoplay EX': {'brand': 'Bang & Olufsen',
-                                  'price': 775.00,
-                                  'speciality': 'Most expensive, great-looking, nice sound',
-                                  'functions': 'Bluetooth 5.2, wireless charging, IPX4 water resistance, touch controls, active noise cancellation',
-                                  'codecs': ['AAC', 'aptX Adaptive', 'SBC'],
-                                  'app support': 'Bang & Olufsen app',
-                                  'battery life': '7.5 hours (buds), 20 hours (case)'},
     'Jabra Elite 85t': {'brand': 'Jabra',
                         'price': 199.95,
                         'speciality': 'best Bluetooth codec support',
@@ -163,6 +139,34 @@ earbud_dict = {
                         'codecs': ['SBC', 'AAC', 'aptX'],
                         'app support': 'Jabra app',
                         'battery life': '7 hours (buds), 24 hours (case)'},
+    'Nothing Ear 1': {'brand': 'Nothing',
+                      'price': 99.99,
+                      'speciality': 'best for design',
+                      'functions': 'Bluetooth 5.2, wireless charging, IPX4 water resistance, touch controls, transparent design',
+                      'codecs': ['AAC', 'SBC'],
+                      'app support': 'Yes',
+                      'battery life': '5.7 hours (buds), 34 hours (case)'},
+    'Samsung Galaxy Buds 2': {'brand': 'Samsung',
+                              'price': 179.00,
+                              'functions': 'Bluetooth 5.2, wireless charging, touch controls, water resistance (IPX7), active noise cancelling, ambient mode',
+                              'speciality': 'best all-rounded, affordable',
+                              'codecs': ['SBC', 'AAC', 'Samsung Scalable'],
+                              'app support': 'Yes, Samsung Wearables app',
+                              'battery life': '7.5 hours (buds), 29 hours (case)'},
+    'Sennheiser Momentum TW 3': {'brand': 'Sennheiser',
+                                 'price': 199.95,
+                                 'speciality': 'best for bass lovers',
+                                 'functions': 'Bluetooth 5.2, wireless charging, IPX4 water resistance, touch controls, equalizer customization',
+                                 'codecs': ['AAC', 'aptX', 'SBC'],
+                                 'app support': 'Sennheiser Smart Control app',
+                                 'battery life': '7 hours (buds), 28 hours (case)'},
+    'Sony WF-1000XM4': {'brand': 'Sony',
+                        'price': 449.95,
+                        'functions': 'Bluetooth 5.2, wireless charging, touch controls, water resistance (IPX4), active noise cancelling, speak-to-chat, 360 Reality Audio',
+                        'speciality': 'best ANC (Active Noise Cancelling), 2nd best Bluetooth codec support',
+                        'codecs': ['SBC', 'AAC', 'LDAC'],
+                        'app support': 'Yes, Sony Headphones Connect app',
+                        'battery life': '8 hours (buds), 24 hours (case)'},
     'Sony WF-C500': {'brand': 'Sony',
                      'price': 115.00,
                      'speciality': 'best sounding cheapest',
@@ -173,13 +177,13 @@ earbud_dict = {
 }
 
 
-# Note: price and features of the headphones are subject to change over time, so the above information might not
-
+# lists for user preferences, will be used in functions below
 brand_list = ['Anker', 'Apple', 'Bang & Olufsen', 'Beats', 'Belkin', 'Bose', 'Bowers & Wilkins', 'Edifier', 'EPOS',
               'Jabra', 'Logitech', 'Nothing', 'Samsung', 'Sennheiser', 'Sony', 'N/A']
 
 functions_list = ["Active Noise Cancelling", "Ambient Sound", "Auto Pause/Play", "Low Latency",
-                  "Passive Noise Cancelling", "Quick Charge", "Voice Call", "Water Resistence", "Wireless Charging",
+                  "Passive Noise Cancelling", "Quick Charge", "Voice Assistant", "Water Resistence",
+                  "Wireless Charging",
                   "N/A"]
 
 codec_list = ["AAC", "aptX", "aptX Low Latency", "aptX Adaptive", "aptX HD", "LC3", "LDAC", "LHDC", "SBC", "N/A"]
@@ -253,8 +257,8 @@ def brand_fc():
         print("Choose a brand from the following: ")
         for i, n in enumerate(brand_list):
             print(f"{i + 1}. {n}")
-        brand_choice = int(input("Enter your choice (e.g. 16): "))
-        if brand_choice <= 0 or brand_choice > 16:
+        brand_choice = int(input("Enter your choice (e.g. 1): "))
+        if brand_choice <= 0 or brand_choice > len(brand_list):
             print("Invalid choice!")
             brand_fc()
         else:
@@ -266,25 +270,14 @@ def brand_fc():
 
 
 # Functions - functions of product included
-'''def functions_fc():
-    try:
-        functions_choices = ["Active Noise Cancelling", "Ambient Sound", "Auto Pause/Play", "Low Latency",
-                             "Passive Noise Cancelling", "Quick Charge", "Voice Call", "Water Resistence", "Wireless Charging", "N/A"]
-        functions = input("Here are some functions:\n - " + " \n - ".join(functions_choices) + "\nEnter functions: ").split(",")
-        return functions == [f.strip() for f in functions]
-    except ValueError:
-        print("Invalid choice!")
-        functions_fc()'''  # previous ver.
-
-
 def functions_fc():
     global functions
     try:
         print("Choose a function from the following: ")
         for i, n in enumerate(functions_list):
             print(f"{i + 1}. {n}")
-        functions_choice = int(input("Enter your choice (e.g. 10): "))
-        if functions_choice <= 0 or functions_choice > 10:
+        functions_choice = int(input("Enter your choice (e.g. 1): "))
+        if functions_choice <= 0 or functions_choice > len(functions_list):
             print("Invalid choice!")
             functions_fc()
         else:
@@ -302,8 +295,8 @@ def codec_fc():
         print("Choose a codec from the following: ")
         for i, n in enumerate(codec_list):
             print(f"{i + 1}. {n}")
-        codec_choice = int(input("Enter your choice (e.g. 10): "))
-        if codec_choice <= 0 or codec_choice > 10:
+        codec_choice = int(input("Enter your choice (e.g. 1): "))
+        if codec_choice <= 0 or codec_choice > len(codec_list):
             print("Invalid choice!")
             codec_fc()
         else:
@@ -322,7 +315,7 @@ def app_support_fc():
         for i, n in enumerate(app_support_list):
             print(f"{i + 1}. {n}")
         app_support_choice = int(input("Enter your choice (e.g. 1): "))
-        if app_support_choice <= 0 or app_support_choice > 3:
+        if app_support_choice <= 0 or app_support_choice > len(app_support_list):
             print("Invalid choice!")
             app_support_fc()
         else:
@@ -341,7 +334,7 @@ def battery_life_fc():
         for i, n in enumerate(battery_list):
             print(f"{i + 1}. {n}")
         battery_choice = int(input("Enter your choice (e.g. 1): "))
-        if battery_choice <= 0 or battery_choice > 5:
+        if battery_choice <= 0 or battery_choice > len(battery_list):
             print("Invalid choice!")
             battery_life_fc()
         else:
@@ -360,14 +353,12 @@ def battery_life_fc():
     return speciality == input("Enter speciality (" + ", ".join(speciality_choices) + "): ")'''
 
 
-# speciality = speciality_fc()
-
-
 # Recommend product to user by filtering preferences
 def recommendation():
+    # set initial list for result
     filtered_products = []
 
-    # Get user preferences, call previous functions
+    # Get user preferences by calling functions
     category_fc()
     price_range_fc()
     brand_fc()
@@ -377,6 +368,7 @@ def recommendation():
     battery_life_fc()
     # print(price_min, price_max, brand, functions, codec, app_support, battery)
     # print(price_min, price_max, type(price_min), type(price_max))
+
     # Filter products based on user choices
     for key, product_info in chosen_dict.items():
         formatted_value = round((product_info['price']), ndigits=2)
@@ -789,6 +781,16 @@ bluetooth = input("Enter Bluetooth version (" + ", ".join(bluetooth
                             recommendations.append(product)
 
     return recommendations
+    
+    def functions_fc():
+    try:
+        functions_choices = ["Active Noise Cancelling", "Ambient Sound", "Auto Pause/Play", "Low Latency",
+                             "Passive Noise Cancelling", "Quick Charge", "Voice Call", "Water Resistence", "Wireless Charging", "N/A"]
+        functions = input("Here are some functions:\n - " + " \n - ".join(functions_choices) + "\nEnter functions: ").split(",")
+        return functions == [f.strip() for f in functions]
+    except ValueError:
+        print("Invalid choice!")
+        functions_fc()
     
     # Headphone/Earbuds Recommendation Program
 

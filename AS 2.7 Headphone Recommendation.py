@@ -225,29 +225,38 @@ def category_fc():
 
 
 # Price range - user enter price range of product
-def price_range_fc():
-    global price_min, price_max
-    n = 0
+def price_min_fc():
+    global price_min
     try:
         price_min = float(input("Enter minimum price (e.g. 100): "))
         if price_min < 0:
             print("You can't enter negative digits. Try again.")
-            price_range_fc()
+            price_min_fc()
         else:
-            while n == 0:
-                price_max = float(input("Enter maximum price (e.g. 100): "))
-                if price_max < price_min:
-                    print("Maximum price must not be smaller minimum price.")
-                elif price_max <= 0:
-                    print("Maximum price must be greater than $0.")
-                else:
-                    n = 1
-        price_min = round((float(price_min)), ndigits=2)
-        price_max = round((float(price_max)), ndigits=2)
-        return price_min, price_max
+            price_min = round((float(price_min)), ndigits=2)
+            price_max_fc()
+        return price_min
     except ValueError:
         print("Invalid choice!")
-        price_range_fc()
+        price_min_fc()
+
+
+def price_max_fc():
+    global price_max
+    try:
+        price_max = float(input("Enter maximum price (e.g. 100): "))
+        if price_max < price_min:
+            print("Maximum price must not be smaller minimum price.")
+            price_min_fc()
+        elif price_max <= 0:
+            print("Maximum price must be greater than $0.")
+            price_min_fc()
+        else:
+            price_max = round((float(price_max)), ndigits=2)
+            return price_max
+    except ValueError:
+        print("Invalid choice!")
+        price_min_fc()
 
 
 # Brand - brand of product
@@ -360,7 +369,7 @@ def recommendation():
 
     # Get user preferences by calling functions
     category_fc()
-    price_range_fc()
+    price_min_fc()
     brand_fc()
     functions_fc()
     codec_fc()
@@ -402,6 +411,32 @@ def recommendation():
 recommendation()  # price_min, price_max, brand, functions, codec
 
 '''   
+28-03
+def price_range_fc():
+    global price_min, price_max
+    n = 0
+    try:
+        price_min = float(input("Enter minimum price (e.g. 100): "))
+        if price_min < 0:
+            print("You can't enter negative digits. Try again.")
+            price_range_fc()
+        else:
+            while n == 0:
+                price_max = float(input("Enter maximum price (e.g. 100): "))
+                if price_max < price_min:
+                    print("Maximum price must not be smaller minimum price.")
+                elif price_max <= 0:
+                    print("Maximum price must be greater than $0.")
+                else:
+                    n = 1
+        price_min = round((float(price_min)), ndigits=2)
+        price_max = round((float(price_max)), ndigits=2)
+        return price_min, price_max
+    except ValueError:
+        print("Invalid choice!")
+        price_range_fc()
+
+
 21-03
 earbud_dict = {'Samsung Galaxy Buds 2': {'brand': 'Samsung', 'price': 149.99, 'speciality': 'best all rounded',
 'codecs': ['SBC', 'AAC', 'Samsung Scalable'], 'app support': 'Galaxy Wearable app',

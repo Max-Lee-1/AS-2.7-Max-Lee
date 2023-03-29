@@ -18,7 +18,7 @@
 # Pricing on 22 Mar 2023
 # headphone: wireless, over-ear
 headphone_dict = {
-    'Anker SoundCore Life Q30': {'brand': ['Anker','Soundcore'],
+    'Anker SoundCore Life Q30': {'brand': ['Anker', 'Soundcore'],
                                  'price': 159.99,
                                  'functions': 'Active Noise Cancelling, Voice Assistant, Passive Noise Cancelling',
                                  'codecs': 'SBC, AAC',
@@ -190,7 +190,7 @@ codec_list = ["AAC", "aptX", "aptX Low Latency", "aptX Adaptive", "aptX HD", "LC
 
 app_support_list = ["Yes", "No", "N/A"]
 
-battery_list = ["Less than 5 hours", "5-10 hours", "10-20 hours", "More than 20 hours", "N/A"]
+battery_list = ["Less than 5 hours", "5 hours or more", "10 hours or more", "20 hours or more", "N/A"]
 
 # set initial values
 price_min = 0.00
@@ -375,39 +375,31 @@ def recommendation():
     codec_fc()
     app_support_fc()
     battery_life_fc()
-    # print(price_min, price_max, brand, functions, codec, app_support, battery)
-    # print(price_min, price_max, type(price_min), type(price_max))
 
     # Filter products based on user choices
     for key, product_info in chosen_dict.items():
         formatted_value = round((product_info['price']), ndigits=2)
         product_info['price'] = formatted_value
         if price_min <= product_info['price'] <= price_max:
-            # print('True')
-            # print(brand, type(brand))
-            # print(brand)
-            # print((product_info['brand']))
-            # print((brand in product_info['brand']))
             if (brand in product_info['brand']) or (brand == "N/A"):
-                # print('True')
                 if (functions in product_info['functions']) or (functions == "N/A"):
-                    # print('True')
                     if (codec in product_info['codecs']) or (codec == "N/A"):
-                        # print('True')
                         if (app_support == "N/A") or (app_support in product_info['app support']):
-                            # print('True')
                             if (battery == "N/A") or (battery.lower() in product_info['battery life']):
-                                # print('True')
                                 filtered_products.append(key)
         # else:
         # print("False")
     if bool(filtered_products) == 0:
-        print("Sorry, we dont have the product that meet your enquirement.")
+        print("Sorry, we dont have the product that meet your preferences.")
     else:
         print("Here is the recommended products: "
               f"{filtered_products}")
 
 
+print('Hello there! I am the True Wireless Headphone/Earbud recommendation program.\n'
+      'I am here to help you choose wireless headphones that best suits your preferences.\n'
+      'Before we continue, please be noted that you are going to be redirected to Versus.com for generating the outcome.\n'
+      'Please make sure you are connected to an active internet.\n')
 recommendation()  # price_min, price_max, brand, functions, codec
 
 '''   

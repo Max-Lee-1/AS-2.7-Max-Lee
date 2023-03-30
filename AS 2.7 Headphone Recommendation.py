@@ -190,7 +190,7 @@ codec_list = ["AAC", "aptX", "aptX Low Latency", "aptX Adaptive", "aptX HD", "LC
 
 app_support_list = ["Yes", "No", "N/A"]
 
-battery_list = ["Less than 5 hours", "5 hours or more", "10 hours or more", "20 hours or more", "N/A"]
+# battery_list = ["Less than 5 hours", "5 hours or more", "10 hours or more", "20 hours or more", "N/A"]
 
 # set initial values
 price_min = 0.00
@@ -339,15 +339,11 @@ def app_support_fc():
 def battery_life_fc():
     global battery
     try:
-        print("Please choose battery life long (in Hrs): ")
-        for i, n in enumerate(battery_list):
-            print(f"{i + 1}. {n}")
-        battery_choice = int(input("Enter your choice (e.g. 1): "))
-        if battery_choice <= 0 or battery_choice > len(battery_list):
-            print("Invalid choice!")
+        battery = int(input("Enter minimum battery life without case charging in Hrs (e.g. 5): "))
+        if battery <= 0:
+            print("Invalid choice! Battery life cannot be 0 Hrs!")
             battery_life_fc()
         else:
-            battery = battery_list[battery_choice - 1]
             return battery
     except ValueError:
         print("Invalid choice!")
@@ -385,7 +381,7 @@ def recommendation():
                 if (functions in product_info['functions']) or (functions == "N/A"):
                     if (codec in product_info['codecs']) or (codec == "N/A"):
                         if (app_support == "N/A") or (app_support in product_info['app support']):
-                            if (battery == "N/A") or (battery.lower() in product_info['battery life']):
+                            if (battery == "N/A") or (battery <= product_info['battery life']):
                                 filtered_products.append(key)
         # else:
         # print("False")

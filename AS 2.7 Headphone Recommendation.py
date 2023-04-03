@@ -185,6 +185,16 @@ functions_list = ["Active Noise Cancelling", "Ambient Sound", "Auto Pause/Play",
                   "Passive Noise Cancelling", "Quick Charge", "Voice Assistant", "Water Resistence",
                   "Wireless Charging",
                   "N/A"]
+functions_desc_list = ["Reduces background noise while listening to music.",
+                       "Allows hearing outside sounds while listening to music.",
+                       "Stops/starts music playback when earbuds are removed/put on.",
+                       "Reduces audio delay for better audio-video synchronization.",
+                       "Blocks external sounds by physical design instead of using technology.",
+                       "Can receive charging voltage at least 5V 2A",
+                       "Can use voice commands like Siri or Google Assistant.",
+                       "Can withstand exposure to water/sweat/rain to a certain degree.",
+                       "Can charge wirelessly.",
+                       "N/A"]
 
 codec_list = ["AAC", "aptX", "aptX Low Latency", "aptX Adaptive", "aptX HD", "LC3", "LDAC", "LHDC", "SBC", "N/A"]
 
@@ -228,12 +238,12 @@ def category_fc():
 def price_min_fc():
     global price_min
     try:
-        price_min = float(input("Enter minimum price (e.g. 100): "))
+        price_min = float(input("Enter minimum price of the product (e.g. 100): "))
         if price_min < 0:
             print("You can't enter negative digits. Try again.")
             price_min_fc()
         else:
-            price_min = round((float(price_min)), ndigits=2)
+            price_min = round((float(price_min)), 2)
             price_max_fc()
         return price_min
     except ValueError:
@@ -244,7 +254,7 @@ def price_min_fc():
 def price_max_fc():
     global price_max
     try:
-        price_max = float(input("Enter maximum price (e.g. 100): "))
+        price_max = float(input("Enter maximum price of the product (e.g. 100): "))
         if price_max < price_min:
             print("Maximum price must not be smaller minimum price.")
             price_min_fc()
@@ -252,7 +262,7 @@ def price_max_fc():
             print("Maximum price must be greater than $0.")
             price_min_fc()
         else:
-            price_max = round((float(price_max)), ndigits=2)
+            price_max = round((float(price_max)), 2)
             return price_max
     except ValueError:
         print("Invalid choice!")
@@ -266,7 +276,7 @@ def brand_fc():
         print("Choose a brand from the following: ")
         for i, n in enumerate(brand_list):
             print(f"{i + 1}. {n}")
-        brand_choice = int(input("Enter your choice (e.g. 1): "))
+        brand_choice = int(input("Enter number of your choice (e.g. 1): "))
         if brand_choice <= 0 or brand_choice > len(brand_list):
             print("Invalid choice!")
             brand_fc()
@@ -282,10 +292,10 @@ def brand_fc():
 def functions_fc():
     global functions
     try:
-        print("Choose a function from the following: ")
+        print("Here are some functions for the product: ")
         for i, n in enumerate(functions_list):
             print(f"{i + 1}. {n}")
-        functions_choice = int(input("Enter your choice (e.g. 1): "))
+        functions_choice = int(input("Enter number of your choice (e.g. 1): "))
         if functions_choice <= 0 or functions_choice > len(functions_list):
             print("Invalid choice!")
             functions_fc()
@@ -394,8 +404,11 @@ def recommendation():
 
 print('Hello there! I am the True Wireless Headphone/Earbud recommendation program.\n'
       'I am here to help you choose wireless headphones that best suits your preferences.\n'
-      'Before we continue, please be noted that you are going to be redirected to Versus.com for generating the outcome.\n'
-      'Please make sure you are connected to an active internet.\n')
+      'Before we continue, there are a few things you should know: \n'
+      '1. N/A in choices means you have no requirements about that specific preference.\n'
+      # 'Before we continue, please be noted that you are going to be redirected to Versus.com for generating the outcome.\n'
+      # 'Please make sure you are connected to an active internet.\n'
+      )
 recommendation()  # price_min, price_max, brand, functions, codec
 
 '''   
@@ -555,6 +568,12 @@ for i, option in enumerate(options):
 selected_indices = input().split(',')
 for index in selected_indices:
     selected_options.append(options[int(index)-1])
+
+# removing spaces using replace() method
+string_with_spaces = input("Enter a string with spaces: ")
+string_without_spaces = string_with_spaces.replace(" ", "")
+print("String without spaces:", string_without_spaces)
+
 
 # print the selected options
 print("You have selected:")

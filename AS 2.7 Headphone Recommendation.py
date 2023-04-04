@@ -293,8 +293,8 @@ def functions_fc():
     global functions
     try:
         print("Here are some functions for the product: ")
-        for i, n in enumerate(functions_list):
-            print(f"{i + 1}. {n}")
+        for i, (n, m) in enumerate(zip(functions_list, functions_desc_list), 1):
+            print(f"{i}. {n} - {m}")
         functions_choice = int(input("Enter number of your choice (e.g. 1): "))
         if functions_choice <= 0 or functions_choice > len(functions_list):
             print("Invalid choice!")

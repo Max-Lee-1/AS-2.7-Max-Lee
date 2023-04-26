@@ -238,7 +238,7 @@ def category_fc():
 def price_min_fc():
     global price_min
     try:
-        price_min = float(input("Enter minimum price of the product (e.g. 100): "))
+        price_min = int(input("Enter minimum price of the product (e.g. 100): "))
         if price_min < 0:
             print("You can't enter negative digits. Try again.")
             price_min_fc()
@@ -254,7 +254,7 @@ def price_min_fc():
 def price_max_fc():
     global price_max
     try:
-        price_max = float(input("Enter maximum price of the product (e.g. 100): "))
+        price_max = int(input("Enter maximum price of the product (e.g. 100): "))
         if price_max < price_min:
             print("Maximum price must not be smaller minimum price.")
             price_min_fc()
@@ -266,26 +266,60 @@ def price_max_fc():
             return price_max
     except ValueError:
         print("Invalid choice!")
-        price_min_fc()
+        price_max_fc()
 
 
 # Brand - brand of product
 def brand_fc():
     global brand
+    choice_list = []
+    print("Choose a brand from the following: ")
+    for i, n in enumerate(brand_list):
+        choice_list.append(n)  # append the brand name instead of the index
+        print(f"{i + 1}. {n}")
+    print(choice_list)
+    user_input = input("Enter number of your choice (e.g. 1): ")
+    print(user_input)
+    user_list = user_input.split(", ")
+    print(user_list)
+    chosen_variables = []  # use a list to store multiple choices
+    for i in user_list:
+        choice_index = int(i) - 1  # convert user input to integer and subtract 1 to get the index
+        chosen_variables.append(brand_list[choice_index])
+    print(chosen_variables)
+    brand = chosen_variables
+    # define the choices and corresponding variables
+    '''if brand_choice <= 0 or brand_choice > len(brand_list):
+            print("Invalid choice!")
+            brand_fc()
+        else:
+            brand = brand_list[brand_choice - 1]
+            return # print(brand)
+        # print(brand_choice_list)'''
+
+
+'''def brand_fc():
+    global brand
     try:
         print("Choose a brand from the following: ")
         for i, n in enumerate(brand_list):
             print(f"{i + 1}. {n}")
-        brand_choice = int(input("Enter number of your choice (e.g. 1): "))
+        user_input = input("Enter number of your choice (e.g. 1): ")
+        user_list = user_input.split(", ")
+        for n in enumerate(brand_list):
+            choice_index = brand_list.index(user_list[0])
+            print(choice_index)
+        # define the choices and corresponding variables
         if brand_choice <= 0 or brand_choice > len(brand_list):
             print("Invalid choice!")
             brand_fc()
         else:
             brand = brand_list[brand_choice - 1]
-            return print(brand)
+            return # print(brand)
+        # print(brand_choice_list)
     except ValueError:
         print("Invalid choice!")
-        brand_fc()
+        brand_fc()'''
 
 
 # Functions - functions of product included
@@ -387,7 +421,11 @@ def recommendation():
         formatted_value = round((product_info['price']), ndigits=2)
         product_info['price'] = formatted_value
         if price_min <= product_info['price'] <= price_max:
-            if (brand in product_info['brand']) or (brand == "N/A"):
+            for item in brand:
+                if item in chosen_dict.items():
+                    if product_info['brand'] == item:
+                        print(key)
+            # if (brand in product_info['brand']) or (brand == "N/A"):
                 if (functions in product_info['functions']) or (functions == "N/A"):
                     if (codec in product_info['codecs']) or (codec == "N/A"):
                         if (app_support == "N/A") or (app_support in product_info['app support']):
@@ -399,7 +437,7 @@ def recommendation():
         print("Sorry, we dont have the product that meet your preferences.")
     else:
         print("Here is the recommended products: "
-              f"{filtered_products}")
+                f"{filtered_products}")
 
 
 print('Hello there! I am the True Wireless Headphone/Earbud recommendation program.\n'

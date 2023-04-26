@@ -275,7 +275,7 @@ def brand_fc():
     choice_list = []
     print("Choose a brand from the following: ")
     for i, n in enumerate(brand_list):
-        choice_list.append(n)  # append the brand name instead of the index
+        choice_list.append(n)  # append the brand name
         print(f"{i + 1}. {n}")
     print(choice_list)
     user_input = input("Enter number of your choice (e.g. 1): ")
@@ -422,22 +422,22 @@ def recommendation():
         product_info['price'] = formatted_value
         if price_min <= product_info['price'] <= price_max:
             for item in brand:
-                if item in chosen_dict.items():
-                    if product_info['brand'] == item:
-                        print(key)
-            # if (brand in product_info['brand']) or (brand == "N/A"):
-                if (functions in product_info['functions']) or (functions == "N/A"):
-                    if (codec in product_info['codecs']) or (codec == "N/A"):
-                        if (app_support == "N/A") or (app_support in product_info['app support']):
-                            if (battery == "N/A") or (battery <= product_info['battery life']):
-                                filtered_products.append(key)
-        # else:
+                if (item in product_info['brand']) or (brand == "N/A"):
+                    if (functions in product_info['functions']) or (functions == "N/A"):
+                        if (codec in product_info['codecs']) or (codec == "N/A"):
+                            if (app_support == "N/A") or (app_support in product_info['app support']):
+                                if (battery == "N/A") or (battery <= product_info['battery life']):
+                                    filtered_products.append(key)
+        # if item in chosen_dict.items():
+                    # if product_info['brand'] == item:
+                        # print(key)
+            # else:
         # print("False")
     if bool(filtered_products) == 0:
         print("Sorry, we dont have the product that meet your preferences.")
     else:
         print("Here is the recommended products: "
-                f"{filtered_products}")
+              f"{filtered_products}")
 
 
 print('Hello there! I am the True Wireless Headphone/Earbud recommendation program.\n'

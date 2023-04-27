@@ -202,6 +202,8 @@ app_support_list = ["Yes", "No", "N/A"]
 
 # battery_list = ["Less than 5 hours", "5 hours or more", "10 hours or more", "20 hours or more", "N/A"]
 
+import sys
+
 # set initial values
 price_min = 0.00
 price_max = 0.00
@@ -405,20 +407,34 @@ def battery_life_fc():
         battery_life_fc()
 
 
-'''def filter_fc(a):
+def price_check_fc():
+    # price input is out of range. We provide headphones from {min(product_info['price'])} to {max(product_info['price'])}. Restart?
     filtered_products = []
     for key, product_info in chosen_dict.items():
         formatted_value = round((product_info['price']), ndigits=2)
         product_info['price'] = formatted_value
         if price_min <= product_info['price'] <= price_max:
             filtered_products.append(key)
-            if bool(filtered_products) == 0:
-                print("Sorry, we dont have the product that meet your preferences.")
-            else:
-                print(filtered_products)
+            break
         else:
-            print(filtered_products)
-            break'''
+            reask_input = input('Restart?')
+            if reask_input == 'yes':
+                recommendation()
+            elif reask_input == 'no':
+                sys.exit()
+    print(filtered_products)
+    return filtered_products
+
+
+def filter_fc(a, filtered_products):
+    print(filtered_products)
+    for key, product_info in chosen_dict.items():
+        print(filtered_products)
+        for item in a:
+            if (item in product_info['brand']) or (item == "N/A"):
+                filtered_products.append(key)
+    print(filtered_products)
+    return filtered_products
 
 
 
@@ -428,24 +444,8 @@ def battery_life_fc():
     global speciality
     speciality_choices = ["Value", "Cheapest", "Pricey", "Long Usage Hours", "Good Sounding (in price range)",
                           "Best ANC", "Best Ambient", "Best Overall"]
-    return speciality == input("Enter speciality (" + ", ".join(speciality_choices) + "): ")'''
-
-
-# Recommend product to user by filtering preferences
-def recommendation():
-    # set initial list for result
-    filtered_products = []
-
-    # Get user preferences by calling functions
-    category_fc()
-    price_min_fc()
-    brand_choice = mult_choice_fc('brand', brand_list)
-    function_choice = mult_choice_fc('function', functions_list)
-    codec_choice = mult_choice_fc('codec', codec_list)
-    app_support_fc()
-    battery_life_fc()
-
-    # Filter products based on user choices
+    return speciality == input("Enter speciality (" + ", ".join(speciality_choices) + "): ")
+    
     for key, product_info in chosen_dict.items():
         formatted_value = round((product_info['price']), ndigits=2)
         product_info['price'] = formatted_value
@@ -475,7 +475,31 @@ def recommendation():
         print("Sorry, we dont have the product that meet your preferences.")
     else:
         print("Here is the recommended products: "
-              f"{filtered_products}")
+              f"{filtered_products}")'''
+
+
+# Recommend product to user by filtering preferences
+def recommendation():
+    # set initial list for result
+    filtered_products = []
+
+    # Get user preferences by calling functions
+    category_fc()
+    price_min_fc()
+    print(filtered_products)
+    print('-')
+    a = price_check_fc()
+    print('-')
+    print(a)
+    brand_choice = mult_choice_fc('brand', brand_list)
+    filter_fc(brand_choice, filtered_products)
+    function_choice = mult_choice_fc('function', functions_list)
+    codec_choice = mult_choice_fc('codec', codec_list)
+    app_support_fc()
+    battery_life_fc()
+
+    # Filter products based on user choices
+
 
 
 print('Hello there! I am the True Wireless Headphone/Earbud recommendation program.\n'

@@ -405,6 +405,24 @@ def battery_life_fc():
         battery_life_fc()
 
 
+'''def filter_fc(a):
+    filtered_products = []
+    for key, product_info in chosen_dict.items():
+        formatted_value = round((product_info['price']), ndigits=2)
+        product_info['price'] = formatted_value
+        if price_min <= product_info['price'] <= price_max:
+            filtered_products.append(key)
+            if bool(filtered_products) == 0:
+                print("Sorry, we dont have the product that meet your preferences.")
+            else:
+                print(filtered_products)
+        else:
+            print(filtered_products)
+            break'''
+
+
+
+
 # Speciality - Special or Honours E.g. Best value
 '''def speciality_fc():
     global speciality
@@ -434,10 +452,16 @@ def recommendation():
         if price_min <= product_info['price'] <= price_max:
             for n in brand_choice:
                 if (n in product_info['brand']) or (n in brand_choice == "N/A"):
+                    filtered_products.append(key)
+                    print(filtered_products)
                     for item in function_choice:
                         if all(item in product_info['functions'] for item in function_choice) or (item in function_choice == "N/A"):
+                            filtered_products.append(key)
+                            print(filtered_products)
                             for m in codec_choice:
                                 if all(m in product_info['codecs'] for m in codec_choice) or (m in codec_choice == "N/A"):
+                                    filtered_products.append(key)
+                                    print(filtered_products)
                 # print(item)
                 #                if item in chosen_dict.items():
                     #                     if product_info['brand'] == item:

@@ -270,24 +270,21 @@ def price_max_fc():
 
 
 # Brand - brand of product
-def brand_fc():
-    global brand
+def brand_fc(a, a_list):
     choice_list = []
     print("Choose a brand from the following: ")
-    for i, n in enumerate(brand_list):
+    for i, n in enumerate(a_list):
         choice_list.append(n)  # append the brand name
         print(f"{i + 1}. {n}")
-    print(choice_list)
     user_input = input("Enter number of your choice (e.g. 1): ")
-    print(user_input)
     user_list = user_input.split(", ")
-    print(user_list)
     chosen_variables = []  # use a list to store multiple choices
     for i in user_list:
         choice_index = int(i) - 1  # convert user input to integer and subtract 1 to get the index
         chosen_variables.append(brand_list[choice_index])
     print(chosen_variables)
-    brand = chosen_variables
+    return chosen_variables
+
     # define the choices and corresponding variables
     '''if brand_choice <= 0 or brand_choice > len(brand_list):
             print("Invalid choice!")
@@ -410,7 +407,8 @@ def recommendation():
     # Get user preferences by calling functions
     category_fc()
     price_min_fc()
-    brand_fc()
+    brand_choice = brand_fc(brand, brand_list)
+    print(brand_choice)
     functions_fc()
     codec_fc()
     app_support_fc()
@@ -421,17 +419,22 @@ def recommendation():
         formatted_value = round((product_info['price']), ndigits=2)
         product_info['price'] = formatted_value
         if price_min <= product_info['price'] <= price_max:
-            for item in brand:
-                if (item in product_info['brand']) or (brand == "N/A"):
+            for item in brand_choice:
+                print(item)
+                if (item in product_info['brand']) or (item == "N/A"):
+
+
+
+            # print(item)
+            #                if item in chosen_dict.items():
+                #                     if product_info['brand'] == item:
+                #                         print(key)
                     if (functions in product_info['functions']) or (functions == "N/A"):
                         if (codec in product_info['codecs']) or (codec == "N/A"):
                             if (app_support == "N/A") or (app_support in product_info['app support']):
                                 if (battery == "N/A") or (battery <= product_info['battery life']):
                                     filtered_products.append(key)
-        # if item in chosen_dict.items():
-                    # if product_info['brand'] == item:
-                        # print(key)
-            # else:
+        # else:
         # print("False")
     if bool(filtered_products) == 0:
         print("Sorry, we dont have the product that meet your preferences.")

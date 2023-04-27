@@ -26,7 +26,7 @@ headphone_dict = {
                                  'battery life': 60},
     'Apple Airpods Max': {'brand': 'Apple',
                           'price': 999.00,
-                          'functions': 'Active Noise Cancelling, Transparency mode',
+                          'functions': 'Active Noise Cancelling, Ambient Sound',
                           'codecs': 'AAC',
                           'app support': 'No',
                           'battery life': 20},
@@ -270,18 +270,32 @@ def price_max_fc():
 
 
 # Brand - brand of product
-def brand_fc(a, a_list):
-    choice_list = []
-    print("Choose a brand from the following: ")
-    for i, n in enumerate(a_list):
-        choice_list.append(n)  # append the brand name
-        print(f"{i + 1}. {n}")
-    user_input = input("Enter number of your choice (e.g. 1): ")
-    user_list = user_input.split(", ")
-    chosen_variables = []  # use a list to store multiple choices
-    for i in user_list:
-        choice_index = int(i) - 1  # convert user input to integer and subtract 1 to get the index
-        chosen_variables.append(brand_list[choice_index])
+def mult_choice_fc(a, a_list):
+    while True:
+        choice_list = []
+        print(f"Choose a {a} from the following: ")
+        for i, _ in enumerate(a_list):
+            choice_list.append(a_list[i])  # append the brand name
+            if a == 'function':
+                print(f"{i + 1}. {a_list[i]} - {functions_desc_list[i]}")
+            else:
+                print(f"{i + 1}. {a_list[i]}")
+        user_input = input("Enter number of your choice (e.g. 1): ")
+        user_list = user_input.split(", ")
+        chosen_variables = []  # use a list to store multiple choices
+        for i in user_list:
+            try:
+                choice_index = int(i) - 1  # convert user input to integer and subtract 1 to get the index
+                if 0 <= choice_index < len(a_list):
+                    chosen_variables.append(a_list[choice_index])
+                else:
+                    print(f"Invalid choice: {i}")
+                    break
+            except ValueError:
+                print(f"Invalid input: {i}")
+                break
+        if len(chosen_variables) == len(user_list):
+            break
     print(chosen_variables)
     return chosen_variables
 
@@ -407,10 +421,9 @@ def recommendation():
     # Get user preferences by calling functions
     category_fc()
     price_min_fc()
-    brand_choice = brand_fc(brand, brand_list)
-    print(brand_choice)
-    functions_fc()
-    codec_fc()
+    brand_choice = mult_choice_fc('brand', brand_list)
+    function_choice = mult_choice_fc('function', functions_list)
+    codec_choice = mult_choice_fc('codec', codec_list)
     app_support_fc()
     battery_life_fc()
 
@@ -419,21 +432,19 @@ def recommendation():
         formatted_value = round((product_info['price']), ndigits=2)
         product_info['price'] = formatted_value
         if price_min <= product_info['price'] <= price_max:
-            for item in brand_choice:
-                print(item)
-                if (item in product_info['brand']) or (item == "N/A"):
-
-
-
-            # print(item)
-            #                if item in chosen_dict.items():
-                #                     if product_info['brand'] == item:
-                #                         print(key)
-                    if (functions in product_info['functions']) or (functions == "N/A"):
-                        if (codec in product_info['codecs']) or (codec == "N/A"):
-                            if (app_support == "N/A") or (app_support in product_info['app support']):
-                                if (battery == "N/A") or (battery <= product_info['battery life']):
-                                    filtered_products.append(key)
+            for n in brand_choice:
+                if (n in product_info['brand']) or (n in brand_choice == "N/A"):
+                    for item in function_choice:
+                        if all(item in product_info['functions'] for item in function_choice) or (item in function_choice == "N/A"):
+                            for m in codec_choice:
+                                if all(m in product_info['codecs'] for m in codec_choice) or (m in codec_choice == "N/A"):
+                # print(item)
+                #                if item in chosen_dict.items():
+                    #                     if product_info['brand'] == item:
+                    #                         print(key)
+                                    if (app_support == "N/A") or (app_support in product_info['app support']):
+                                        if (battery == "N/A") or (battery <= product_info['battery life']):
+                                            filtered_products.append(key)
         # else:
         # print("False")
     if bool(filtered_products) == 0:

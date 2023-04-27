@@ -430,8 +430,8 @@ def filter_fc(a, filtered_products):
     print(filtered_products)
     for key, product_info in chosen_dict.items():
         print(filtered_products)
-        for item in a:
-            if (item in product_info['brand']) or (item == "N/A"):
+        for item in a, filtered_products:
+            if all(item in product_info['brand'] in filtered_products for item in a) or (item == "N/A"):
                 filtered_products.append(key)
     print(filtered_products)
     return filtered_products

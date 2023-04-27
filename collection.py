@@ -148,3 +148,16 @@ if __name__ == '__main__':
             # print ('%r: %r' % (key, value))
         # print(a_dictionary[:int(len(a_dictionary)/2)]) # call first half
     '''
+
+'''
+# parameter func.
+def reduce_health(h):
+    h -= 1  # decremented the value of h by 1 every time thi function is called
+    return h
+
+
+health = 10
+# use the function
+health = reduce_health(health)
+print(health)  # 9
+'''

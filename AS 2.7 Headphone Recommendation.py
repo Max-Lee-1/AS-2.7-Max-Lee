@@ -1,4 +1,3 @@
-
 ''' Headphone/Earbuds recommendation program
     users have to fill in requirements to narrow result
     Two categories of True Wireless(TW): TW Headphones & TW Earbuds (use collections)
@@ -12,13 +11,13 @@
                               Speciality (added form reference): the best overall, Best in audio, best in user-friendly...
                               Info: Ship Y/N; Retail Y/N; Overall rating (May add other ratings);
 '''
-
+import sys
 # dictionary for options - includes price, brand, functions, Bluetooth Codec, App support, Battery Life and Speciality
 # need to add the options one by one
 # Pricing on 22 Mar 2023
 # headphone: wireless, over-ear
 headphone_dict = {
-    'Anker SoundCore Life Q30': {'brand': ['Anker'],
+    'Anker SoundCore Life Q30': {'brand': 'Anker',
                                  'price': 159.99,
                                  'functions': 'Active Noise Cancelling, Voice Assistant, Passive Noise Cancelling',
                                  'codecs': 'SBC, AAC',
@@ -177,6 +176,13 @@ earbud_dict = {
 }
 
 
+def list_fc():
+    brand_list = []
+    for earbud in earbud_dict.values():
+        brand_list.append(headphone_dict['brand'] | earbud['brand'])
+    print(brand_list)
+
+
 # lists for user preferences, will be used in functions below
 brand_list = ['Anker', 'Apple', 'Bang & Olufsen', 'Beats', 'Belkin', 'Bose', 'Bowers & Wilkins', 'Edifier', 'EPOS',
               'Jabra', 'Logitech', 'Nothing', 'Samsung', 'Sennheiser', 'Sony', 'N/A']
@@ -199,10 +205,6 @@ functions_desc_list = ["Reduces background noise while listening to music.",
 codec_list = ["AAC", "aptX", "aptX Low Latency", "aptX Adaptive", "aptX HD", "LC3", "LDAC", "LHDC", "SBC", "N/A"]
 
 app_support_list = ["Yes", "No", "N/A"]
-
-# battery_list = ["Less than 5 hours", "5 hours or more", "10 hours or more", "20 hours or more", "N/A"]
-
-import sys
 
 # set initial values
 price_min = 0.00
@@ -315,33 +317,26 @@ def price_check_fc():
         return filtered_products
 
 
-def filter_fc(a, b, chosen_dict, filtered_products):
-    print(a)
-    new_filtered_products = []
+def filter_fc(choice, value, chosen_dict, filtered_products):
+    to_remove = []
     for product in filtered_products:
         if product not in chosen_dict:
             continue
-        print(f"chosen_dict[product][b]: {chosen_dict[product][b]}")
-        for i in chosen_dict[product][b]:
-            for j in a:
-                if a == 'N/A':
-                    break
-                if b == 'brand':
-                    if j not in i:
-                        break
-                else:
-                    if not all(func in chosen_dict[product][b] for func in a):
-                        break
-            else:  # This else clause is executed if the inner loop did not break
-                new_filtered_products.append(product)
-                break
-    if not new_filtered_products:
+        if choice == ['N/A']:
+            break
+        if value == 'brand':
+            if chosen_dict[product][value] not in choice:
+                to_remove.append(product)
+        else:
+            if not all(c in chosen_dict[product][value] for c in choice):
+                to_remove.append(product)
+
+    filtered_products = [p for p in filtered_products if p not in to_remove]
+
+    if not filtered_products:
         return reask_fc()
     else:
-        print(new_filtered_products)
-        return new_filtered_products
-
-
+        return filtered_products
 
 
 def reask_fc():
@@ -350,6 +345,40 @@ def reask_fc():
         recommendation()
     elif reask_input == 'no':
         return sys.exit()
+
+
+# App support - choice on having app support or not
+def app_support_fc():
+    global app_support
+    try:
+        print("Would you like the headphone/earbud to include app support?")
+        for i, n in enumerate(app_support_list):
+            print(f"{i + 1}. {n}")
+        app_support_choice = int(input("Enter your choice (e.g. 1): "))
+        if app_support_choice <= 0 or app_support_choice > len(app_support_list):
+            print("Invalid choice!")
+            app_support_fc()
+        else:
+            app_support = app_support_list[app_support_choice - 1]
+            return app_support
+    except ValueError:
+        print("Invalid choice!")
+        app_support_fc()
+
+
+# Battery Life - Battery life-long in hrs
+def battery_life_fc():
+    global battery
+    try:
+        battery = int(input("Enter minimum battery life without case charging in Hrs (e.g. 5): "))
+        if battery <= 0:
+            print("Invalid choice! Battery life cannot be 0 Hrs!")
+            battery_life_fc()
+        else:
+            return battery
+    except ValueError:
+        print("Invalid choice!")
+        battery_life_fc()
 
 
 # Recommend product to user by filtering preferences
@@ -391,43 +420,7 @@ print('Hello there! I am the True Wireless Headphone/Earbud recommendation progr
       )
 recommendation()  # price_min, price_max, brand, functions, codec
 
-
-
-# define the choices and corresponding variables
-'''if brand_choice <= 0 or brand_choice > len(brand_list):
-            print("Invalid choice!")
-            brand_fc()
-        else:
-            brand = brand_list[brand_choice - 1]
-            return # print(brand)
-        # print(brand_choice_list)'''
-
-
-'''def brand_fc():
-    global brand
-    try:
-        print("Choose a brand from the following: ")
-        for i, n in enumerate(brand_list):
-            print(f"{i + 1}. {n}")
-        user_input = input("Enter number of your choice (e.g. 1): ")
-        user_list = user_input.split(", ")
-        for n in enumerate(brand_list):
-            choice_index = brand_list.index(user_list[0])
-            print(choice_index)
-        # define the choices and corresponding variables
-        if brand_choice <= 0 or brand_choice > len(brand_list):
-            print("Invalid choice!")
-            brand_fc()
-        else:
-            brand = brand_list[brand_choice - 1]
-            return # print(brand)
-        # print(brand_choice_list)
-    except ValueError:
-        print("Invalid choice!")
-        brand_fc()'''
-
-
-# Functions - functions of product included
+'''# Functions - functions of product included
 def functions_fc():
     global functions
     try:
@@ -462,43 +455,39 @@ def codec_fc():
             return codec
     except ValueError:
         print("Invalid choice!")
-        codec_fc()
+        codec_fc()'''
 
-
-# App support - choice on having app support or not
-def app_support_fc():
-    global app_support
-    try:
-        print("Would you like the headphone/earbud to include app support?")
-        for i, n in enumerate(app_support_list):
-            print(f"{i + 1}. {n}")
-        app_support_choice = int(input("Enter your choice (e.g. 1): "))
-        if app_support_choice <= 0 or app_support_choice > len(app_support_list):
+# define the choices and corresponding variables
+'''if brand_choice <= 0 or brand_choice > len(brand_list):
             print("Invalid choice!")
-            app_support_fc()
+            brand_fc()
         else:
-            app_support = app_support_list[app_support_choice - 1]
-            return app_support
-    except ValueError:
-        print("Invalid choice!")
-        app_support_fc()
+            brand = brand_list[brand_choice - 1]
+            return # print(brand)
+        # print(brand_choice_list)'''
 
-
-# Battery Life - Battery life-long in hrs
-def battery_life_fc():
-    global battery
+'''def brand_fc():
+    global brand
     try:
-        battery = int(input("Enter minimum battery life without case charging in Hrs (e.g. 5): "))
-        if battery <= 0:
-            print("Invalid choice! Battery life cannot be 0 Hrs!")
-            battery_life_fc()
+        print("Choose a brand from the following: ")
+        for i, n in enumerate(brand_list):
+            print(f"{i + 1}. {n}")
+        user_input = input("Enter number of your choice (e.g. 1): ")
+        user_list = user_input.split(", ")
+        for n in enumerate(brand_list):
+            choice_index = brand_list.index(user_list[0])
+            print(choice_index)
+        # define the choices and corresponding variables
+        if brand_choice <= 0 or brand_choice > len(brand_list):
+            print("Invalid choice!")
+            brand_fc()
         else:
-            return battery
+            brand = brand_list[brand_choice - 1]
+            return # print(brand)
+        # print(brand_choice_list)
     except ValueError:
         print("Invalid choice!")
-        battery_life_fc()
-
-
+        brand_fc()'''
 
 '''
 def my_function():
@@ -510,7 +499,6 @@ while True:
         my_function()
         sys.exit()
 '''
-
 
 '''def filter_fc(a, b, chosen_dict, filtered_products):
     product_info_b = [product_info[b] for product_info in chosen_dict.values()]
@@ -533,7 +521,6 @@ while True:
     else:
         print(filtered_products)
         return filtered_products'''
-
 
 # Speciality - Special or Honours E.g. Best value
 '''def speciality_fc():
@@ -572,7 +559,6 @@ while True:
     else:
         print("Here is the recommended products: "
               f"{filtered_products}")'''
-
 
 '''   
 28-03

@@ -221,13 +221,13 @@ def category_fc():
         category_choice = input("Which category are you looking for? (Enter 'headphone' or 'earbud' or 'both'): ")
         if category_choice.lower() == "headphone":
             chosen_dict = headphone_dict
-            return  # print(chosen_dict)
+            return chosen_dict
         elif category_choice.lower() == "earbud":
             chosen_dict = earbud_dict
-            return  # print(chosen_dict)
+            return chosen_dict
         elif category_choice.lower() == "both":
             chosen_dict = headphone_dict | earbud_dict
-            return  # print(chosen_dict)
+            return chosen_dict
         else:
             print("Invalid choice!")
             category_fc()
@@ -423,18 +423,40 @@ def price_check_fc():
             elif reask_input == 'no':
                 sys.exit()
     print(filtered_products)
+    print('-')
     return filtered_products
 
 
-def filter_fc(a, filtered_products):
+def filter_fc(a, b, chosen_dict, filtered_products):
+    # Print the initial filtered products list
+    print(a)
+    print(b)
     print(filtered_products)
-    for key, product_info in chosen_dict.items():
-        print(filtered_products)
-        for item in a, filtered_products:
-            if all(item in product_info['brand'] in filtered_products for item in a) or (item == "N/A"):
-                filtered_products.append(key)
-    print(filtered_products)
+    print('-')
+
+    # Loop through each item in the category list
+    for choice in a:
+        # Loop through each key in chosen_dict
+        for item in chosen_dict:
+            # Check if the current key matches the selected category
+            if item == b:
+                continue
+            # Check if all choices are included in the product info
+            if all(choice in chosen_dict[item][b] for choice in a) or choice == "N/A":
+                # Append the current key to filtered_products if all choices are included
+                filtered_products.append(item)
+
+    # Remove duplicates from the filtered list
+    filtered_products = list(set(filtered_products))
+    if not filtered_products:
+        print('No results')
+        return
+
+    # Print the final filtered products list
+    # print(filtered_products)
     return filtered_products
+
+
 
 
 
@@ -487,16 +509,20 @@ def recommendation():
     category_fc()
     price_min_fc()
     print(filtered_products)
-    print('-')
-    a = price_check_fc()
-    print('-')
-    print(a)
+    filtered_products = price_check_fc()
     brand_choice = mult_choice_fc('brand', brand_list)
-    filter_fc(brand_choice, filtered_products)
+    filter_fc(brand_choice, 'brand', chosen_dict, filtered_products)
     function_choice = mult_choice_fc('function', functions_list)
+    filter_fc(function_choice, 'functions', chosen_dict, filtered_products)
     codec_choice = mult_choice_fc('codec', codec_list)
+    filter_fc(codec_choice, 'codecs', chosen_dict, filtered_products)
     app_support_fc()
     battery_life_fc()
+    if bool(filtered_products) == 0:
+        print("Sorry, we dont have the product that meet your preferences.")
+    else:
+        print("Here is the recommended products: "
+              f"{filtered_products}")
 
     # Filter products based on user choices
 

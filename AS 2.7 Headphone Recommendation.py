@@ -18,7 +18,7 @@
 # Pricing on 22 Mar 2023
 # headphone: wireless, over-ear
 headphone_dict = {
-    'Anker SoundCore Life Q30': {'brand': ['Anker', 'Soundcore'],
+    'Anker SoundCore Life Q30': {'brand': ['Anker'],
                                  'price': 159.99,
                                  'functions': 'Active Noise Cancelling, Voice Assistant, Passive Noise Cancelling',
                                  'codecs': 'SBC, AAC',
@@ -301,8 +301,100 @@ def mult_choice_fc(a, a_list):
     print(chosen_variables)
     return chosen_variables
 
-    # define the choices and corresponding variables
-    '''if brand_choice <= 0 or brand_choice > len(brand_list):
+
+def price_check_fc():
+    filtered_products = []
+    for key, product_info in chosen_dict.items():
+        formatted_value = round((product_info['price']), ndigits=2)
+        product_info['price'] = formatted_value
+        if price_min <= product_info['price'] <= price_max:
+            filtered_products.append(key)
+    if not filtered_products:
+        return reask_fc()
+    else:
+        return filtered_products
+
+
+def filter_fc(a, b, chosen_dict, filtered_products):
+    print(a)
+    new_filtered_products = []
+    for product in filtered_products:
+        if product not in chosen_dict:
+            continue
+        print(f"chosen_dict[product][b]: {chosen_dict[product][b]}")
+        for i in chosen_dict[product][b]:
+            for j in a:
+                if a == 'N/A':
+                    break
+                if b == 'brand':
+                    if j not in i:
+                        break
+                else:
+                    if not all(func in chosen_dict[product][b] for func in a):
+                        break
+            else:  # This else clause is executed if the inner loop did not break
+                new_filtered_products.append(product)
+                break
+    if not new_filtered_products:
+        return reask_fc()
+    else:
+        print(new_filtered_products)
+        return new_filtered_products
+
+
+
+
+def reask_fc():
+    reask_input = input('Restart?')
+    if reask_input == 'yes':
+        recommendation()
+    elif reask_input == 'no':
+        return sys.exit()
+
+
+# Recommend product to user by filtering preferences
+def recommendation():
+    # set initial list for result
+    filtered_products = []
+
+    # Get user preferences by calling functions
+    category_fc()
+    price_min_fc()
+    print(filtered_products)
+    filtered_products = price_check_fc()
+    brand_choice = mult_choice_fc('brand', brand_list)
+    print(f'brandchoice: {brand_choice}')
+    filtered_products = filter_fc(brand_choice, 'brand', chosen_dict, filtered_products)
+    print('after brand:')
+    print(filtered_products)
+    function_choice = mult_choice_fc('function', functions_list)
+    filtered_products = filter_fc(function_choice, 'functions', chosen_dict, filtered_products)
+    print('after brand:')
+    print(filtered_products)
+    codec_choice = mult_choice_fc('codec', codec_list)
+    filtered_products = filter_fc(codec_choice, 'codecs', chosen_dict, filtered_products)
+    app_support_fc()
+    battery_life_fc()
+    if bool(filtered_products) == 0:
+        print("Sorry, we dont have the product that meet your preferences.")
+    else:
+        print("Here is the recommended products: "
+              f"{filtered_products}")
+
+
+print('Hello there! I am the True Wireless Headphone/Earbud recommendation program.\n'
+      'I am here to help you choose wireless headphones that best suits your preferences.\n'
+      'Before we continue, there are a few things you should know: \n'
+      '1. N/A in choices means you have no requirements about that specific preference.\n'
+      # 'Before we continue, please be noted that you are going to be redirected to Versus.com for generating the outcome.\n'
+      # 'Please make sure you are connected to an active internet.\n'
+      )
+recommendation()  # price_min, price_max, brand, functions, codec
+
+
+
+# define the choices and corresponding variables
+'''if brand_choice <= 0 or brand_choice > len(brand_list):
             print("Invalid choice!")
             brand_fc()
         else:
@@ -407,58 +499,40 @@ def battery_life_fc():
         battery_life_fc()
 
 
-def price_check_fc():
-    # price input is out of range. We provide headphones from {min(product_info['price'])} to {max(product_info['price'])}. Restart?
-    filtered_products = []
+
+'''
+def my_function():
+    # do something
+
+while True:
+    # do something
+    if need_to_restart:
+        my_function()
+        sys.exit()
+'''
+
+
+'''def filter_fc(a, b, chosen_dict, filtered_products):
+    product_info_b = [product_info[b] for product_info in chosen_dict.values()]
+    matches = []
+
     for key, product_info in chosen_dict.items():
-        formatted_value = round((product_info['price']), ndigits=2)
-        product_info['price'] = formatted_value
-        if price_min <= product_info['price'] <= price_max:
-            filtered_products.append(key)
-            break
-        else:
-            reask_input = input('Restart?')
-            if reask_input == 'yes':
-                recommendation()
-            elif reask_input == 'no':
-                sys.exit()
+        if key in filtered_products:
+            if b == 'brand':
+                if any(choice in product_info_b for choice in a) or "N/A" in a:
+                    matches.append(key)
+            else:
+                if all(i == product_info[b] for i in a) or "N/A" in a:
+                    matches.append(key)
+
+    filtered_products = [key for key in matches if key in chosen_dict]
     print(filtered_products)
-    print('-')
-    return filtered_products
 
-
-def filter_fc(a, b, chosen_dict, filtered_products):
-    # Print the initial filtered products list
-    print(a)
-    print(b)
-    print(filtered_products)
-    print('-')
-
-    # Loop through each item in the category list
-    for choice in a:
-        # Loop through each key in chosen_dict
-        for item in chosen_dict:
-            # Check if the current key matches the selected category
-            if item == b:
-                continue
-            # Check if all choices are included in the product info
-            if all(choice in chosen_dict[item][b] for choice in a) or choice == "N/A":
-                # Append the current key to filtered_products if all choices are included
-                filtered_products.append(item)
-
-    # Remove duplicates from the filtered list
-    filtered_products = list(set(filtered_products))
     if not filtered_products:
-        print('No results')
-        return
-
-    # Print the final filtered products list
-    # print(filtered_products)
-    return filtered_products
-
-
-
-
+        return reask_fc()
+    else:
+        print(filtered_products)
+        return filtered_products'''
 
 
 # Speciality - Special or Honours E.g. Best value
@@ -499,43 +573,6 @@ def filter_fc(a, b, chosen_dict, filtered_products):
         print("Here is the recommended products: "
               f"{filtered_products}")'''
 
-
-# Recommend product to user by filtering preferences
-def recommendation():
-    # set initial list for result
-    filtered_products = []
-
-    # Get user preferences by calling functions
-    category_fc()
-    price_min_fc()
-    print(filtered_products)
-    filtered_products = price_check_fc()
-    brand_choice = mult_choice_fc('brand', brand_list)
-    filter_fc(brand_choice, 'brand', chosen_dict, filtered_products)
-    function_choice = mult_choice_fc('function', functions_list)
-    filter_fc(function_choice, 'functions', chosen_dict, filtered_products)
-    codec_choice = mult_choice_fc('codec', codec_list)
-    filter_fc(codec_choice, 'codecs', chosen_dict, filtered_products)
-    app_support_fc()
-    battery_life_fc()
-    if bool(filtered_products) == 0:
-        print("Sorry, we dont have the product that meet your preferences.")
-    else:
-        print("Here is the recommended products: "
-              f"{filtered_products}")
-
-    # Filter products based on user choices
-
-
-
-print('Hello there! I am the True Wireless Headphone/Earbud recommendation program.\n'
-      'I am here to help you choose wireless headphones that best suits your preferences.\n'
-      'Before we continue, there are a few things you should know: \n'
-      '1. N/A in choices means you have no requirements about that specific preference.\n'
-      # 'Before we continue, please be noted that you are going to be redirected to Versus.com for generating the outcome.\n'
-      # 'Please make sure you are connected to an active internet.\n'
-      )
-recommendation()  # price_min, price_max, brand, functions, codec
 
 '''   
 28-03

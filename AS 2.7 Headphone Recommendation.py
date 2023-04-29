@@ -176,13 +176,6 @@ earbud_dict = {
 }
 
 
-def list_fc():
-    brand_list = []
-    for earbud in earbud_dict.values():
-        brand_list.append(headphone_dict['brand'] | earbud['brand'])
-    print(brand_list)
-
-
 # lists for user preferences, will be used in functions below
 brand_list = ['Anker', 'Apple', 'Bang & Olufsen', 'Beats', 'Belkin', 'Bose', 'Bowers & Wilkins', 'Edifier', 'EPOS',
               'Jabra', 'Logitech', 'Nothing', 'Samsung', 'Sennheiser', 'Sony', 'N/A']
@@ -312,7 +305,7 @@ def price_check_fc():
         if price_min <= product_info['price'] <= price_max:
             filtered_products.append(key)
     if not filtered_products:
-        return reask_fc()
+        return restart_fc()
     else:
         return filtered_products
 
@@ -334,16 +327,16 @@ def filter_fc(choice, value, chosen_dict, filtered_products):
     filtered_products = [p for p in filtered_products if p not in to_remove]
 
     if not filtered_products:
-        return reask_fc()
+        return restart_fc()
     else:
         return filtered_products
 
 
-def reask_fc():
-    reask_input = input('Restart?')
-    if reask_input == 'yes':
+def restart_fc():
+    restart_input = input('Restart?')
+    if restart_input == 'yes':
         recommendation()
-    elif reask_input == 'no':
+    elif restart_input == 'no':
         return sys.exit()
 
 
@@ -420,7 +413,14 @@ print('Hello there! I am the True Wireless Headphone/Earbud recommendation progr
       )
 recommendation()  # price_min, price_max, brand, functions, codec
 
-'''# Functions - functions of product included
+'''
+def list_fc(a, a_list):
+    a_list = []
+    for n in chosen_dict.values():
+        a_list.append(headphone_dict['a'] | earbud_dict['a'])
+    return print(brand_list)
+
+# Functions - functions of product included
 def functions_fc():
     global functions
     try:

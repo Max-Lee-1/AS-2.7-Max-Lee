@@ -407,7 +407,9 @@ def recommendation():
 print('Hello there! I am the True Wireless Headphone/Earbud recommendation program.\n'
       'I am here to help you choose wireless headphones that best suits your preferences.\n'
       'Before we continue, there are a few things you should know: \n'
-      '1. N/A in choices means you have no requirements about that specific preference.\n'
+      '1. N/A in choices means you have no requirements about that specific preference or select all.\n'
+      '2. In multiple choices, please input in format (eg. 1, 2, 3); Other questions input numbers only (eg. 1)\n'
+      '3. Please only input "N/A" if so.'
       # 'Before we continue, please be noted that you are going to be redirected to Versus.com for generating the outcome.\n'
       # 'Please make sure you are connected to an active internet.\n'
       )

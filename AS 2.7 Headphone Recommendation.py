@@ -182,7 +182,7 @@ brand_list = ['Anker', 'Apple', 'Bang & Olufsen', 'Beats', 'Belkin', 'Bose', 'Bo
               'Jabra', 'Logitech', 'Nothing', 'Samsung', 'Sennheiser', 'Sony', 'N/A']
 
 functions_list = ["Active Noise Cancelling", "Ambient Sound", "Auto Pause/Play", "Low Latency",
-                  "Passive Noise Cancelling", "Quick Charge", "Voice Assistant", "Water Resistence",
+                  "Passive Noise Cancelling", "Quick Charge", "Voice Assistant", "Water Resistance",
                   "Wireless Charging",
                   "N/A"]
 functions_desc_list = ["Reduces background noise while listening to music.",
@@ -310,7 +310,6 @@ def mult_choice_fc(a, a_list):
                 break
         if len(chosen_variables) == len(user_list):
             break
-    print(chosen_variables)
     return chosen_variables
 
 
@@ -415,8 +414,7 @@ print('Hello there! I am the True Wireless Headphone/Earbud recommendation progr
       'Before we continue, there are a few things you should know: \n'
       '1. N/A in choices means you have no requirements about that specific preference or select all.\n'
       '2. In multiple choices, please input in format (eg. 1, 2, 3); Other questions input numbers only (eg. 1)\n'
-      '3. Please only input "N/A" if so.'
-      f'4. Lowest price of all headphones is ${min_price}. Please enter a price higher than that.\n'
+      f'3. Lowest price of all headphones is ${min_price}. Please enter a price higher than that.\n'
       # 'Before we continue, please be noted that you are going to be redirected to Versus.com for generating the outcome.\n'
       # 'Please make sure you are connected to an active internet.\n'
       )
